@@ -1,0 +1,469 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>ВсОШ English 7–8</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: answer-sheet workbook — a header with three tabs, one centred work column, cards only where a task lives */
+:root{
+  --bg:#EEF1F6; --surface:#FFFFFF; --surface-2:#F5F7FB; --line:#D5DBE6;
+  --fg:#16203A; --muted:#5A6580; --accent:#1F3FA8; --accent-soft:#E2E8FA;
+  --ok:#1E7A46; --ok-soft:#DDF2E5; --bad:#B4232F; --bad-soft:#FBE3E5;
+  --art-sky:#DCE7F5; --art-ground:#9CC48A; --art-water:#6E9FCF; --art-night:#1E2A4F; --art-stone:#A3A7AE;
+  --display:"Unbounded","Golos Text",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1424; --surface:#172036; --surface-2:#1D2741; --line:#2C3856;
+  --fg:#E7EBF4; --muted:#9AA5BF; --accent:#8EA8FF; --accent-soft:#25335C;
+  --ok:#5FD08F; --ok-soft:#15392A; --bad:#FF8A93; --bad-soft:#44202A;
+  --art-sky:#26365A; --art-ground:#3F6B4A; --art-water:#2F5A86; --art-night:#0A1022; --art-stone:#7D828C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1424; --surface:#172036; --surface-2:#1D2741; --line:#2C3856;
+  --fg:#E7EBF4; --muted:#9AA5BF; --accent:#8EA8FF; --accent-soft:#25335C;
+  --ok:#5FD08F; --ok-soft:#15392A; --bad:#FF8A93; --bad-soft:#44202A;
+  --art-sky:#26365A; --art-ground:#3F6B4A; --art-water:#2F5A86; --art-night:#0A1022; --art-stone:#7D828C; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:880px;margin:0 auto}
+header{padding-block:28px 8px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+.brand small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(24px,5vw,34px);margin:4px 0 0;letter-spacing:-.01em;text-wrap:balance}
+h1 span{color:var(--accent)}
+h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0 0 6px;text-wrap:balance}
+h3{font-size:17px;margin:0 0 6px}
+p{margin:0}
+.lead{color:var(--muted);max-width:65ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:12px;display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line);margin-bottom:22px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tab{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:999px;font-weight:600;font-size:15px}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+section.view{display:grid;gap:20px}
+.modes{display:flex;flex-wrap:wrap;gap:8px}
+.mode{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 12px;text-align:left;display:grid;gap:0;min-width:0}
+.mode b{font-size:15px}
+.mode span{font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+.mode[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.scorebar{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:14px;color:var(--muted)}
+.scorebar strong{color:var(--fg);font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:8px;padding:6px 12px;font-size:14px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:transparent;border-radius:999px;padding:4px 11px;font-size:13.5px}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.qcard{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:22px;align-items:start}
+.qcard.noart{grid-template-columns:minmax(0,1fr)}
+.art{width:100%;max-width:100%;aspect-ratio:5/3;border-radius:10px;overflow:hidden;background:var(--art-sky)}
+.art svg{display:block;width:100%;height:100%}
+.qmeta{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;display:flex;gap:10px;flex-wrap:wrap}
+.qtext{font-size:18px;font-weight:600;margin:8px 0 14px;text-wrap:pretty}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:baseline;text-align:left;width:100%;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{font-family:var(--mono);font-weight:700;color:var(--muted);flex:none}
+.opt.right{background:var(--ok-soft);border-color:var(--ok)}
+.opt.right .k{color:var(--ok)}
+.opt.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.opt.wrong .k{color:var(--bad)}
+.opt:disabled{cursor:default}
+.explain{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--surface-2);border-left:4px solid var(--accent);font-size:15px}
+.explain b{display:block;margin-bottom:2px}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.pager .nav{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 16px;font-weight:600}
+.pager .nav.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.pager .nav:disabled{opacity:.4;cursor:default}
+.dots{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;flex:1;min-width:0}
+.dot{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);background:var(--surface);font-size:11px;font-family:var(--mono);padding:0;color:var(--muted)}
+.dot.cur{border-color:var(--fg);color:var(--fg);font-weight:700}
+.dot.r{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.dot.w{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.list{display:grid;gap:10px}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:10px}
+.row .n{font-family:var(--mono);color:var(--muted);font-weight:700;margin-right:6px}
+.tf{display:flex;gap:8px;flex-wrap:wrap}
+.tf button{border:1px solid var(--line);background:var(--surface-2);border-radius:8px;padding:6px 16px;font-weight:700;font-family:var(--mono)}
+.tf button.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.tf button.wrong{background:var(--bad-soft);border-color:var(--bad);color:var(--bad)}
+.note{font-size:14.5px;color:var(--muted)}
+.note.ok{color:var(--ok)} .note.bad{color:var(--bad)}
+.match{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,260px);gap:10px;align-items:center}
+select{font:inherit;color:var(--fg);background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:7px 10px;width:100%;min-width:0}
+select.right{border-color:var(--ok);background:var(--ok-soft)}
+select.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.pool{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14.5px}
+.pool span b{font-family:var(--mono);color:var(--accent)}
+.cells{display:flex;flex-wrap:wrap;gap:4px}
+.cell{width:32px;height:38px;text-align:center;font-family:var(--mono);font-weight:700;font-size:17px;text-transform:uppercase;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);color:var(--fg);padding:0}
+.cell.given{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.cell.right{border-color:var(--ok);background:var(--ok-soft)}
+.cell.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.btn{border:0;background:var(--accent);color:var(--surface);border-radius:10px;padding:10px 18px;font-weight:700}
+.result{font-weight:600}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);position:sticky;top:0}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+.yes{color:var(--ok);font-weight:700}
+.no{color:var(--bad);font-weight:700}
+.opt-t{color:var(--muted);font-weight:700}
+.sk-tabs{display:flex;flex-wrap:wrap;gap:6px}
+.skel{display:grid;gap:10px}
+.block{display:grid;grid-template-columns:120px minmax(0,1fr);gap:14px;padding:12px 0;border-top:1px dashed var(--line)}
+.block:first-child{border-top:0}
+.block .lbl{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--accent)}
+.block .tmpl{font-family:var(--mono);font-size:13.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word}
+.block .hint{font-size:14px;color:var(--muted);margin-top:4px}
+.traps{background:var(--bad-soft);border-radius:10px;padding:12px 14px;font-size:14.5px}
+.traps b{color:var(--bad)}
+.traps ul,.facts ul{margin:6px 0 0;padding-left:20px}
+.facts{display:grid;gap:14px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.tag{display:inline-block;font-size:12px;font-family:var(--mono);border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin:2px 4px 2px 0;color:var(--muted)}
+@media (max-width:640px){
+  .qcard{grid-template-columns:minmax(0,1fr)}
+  .art{max-width:360px}
+  .match{grid-template-columns:minmax(0,1fr)}
+  .block{grid-template-columns:minmax(0,1fr);gap:4px}
+}
+@media (prefers-reduced-motion:no-preference){.opt,.tab,.mode{transition:border-color .15s,background .15s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="brand"><small>Муниципальный этап · 7–8 класс</small><h1>ВсОШ English <span>7–8</span></h1></div>
+  <p class="lead" style="max-width:40ch;font-size:14px">Страноведение в форматах реальных олимпиад 2025 года и шпаргалка по письменным заданиям.</p>
+</header>
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" data-view="quiz" aria-selected="true">Страноведение</button>
+  <button class="tab" role="tab" data-view="writing" aria-selected="false">Письмо</button>
+  <button class="tab" role="tab" data-view="real" aria-selected="false">Что было в 2025</button>
+</nav>
+
+<section class="view" id="v-quiz">
+  <div class="modes" id="modes"></div>
+  <div class="scorebar"><div id="scoreline"></div><button class="ghost" id="reset">Начать раздел заново</button></div>
+  <div id="stage"></div>
+</section>
+
+<section class="view" id="v-writing" hidden>
+  <div><h2>Виды письменных работ</h2><p class="lead">В 2025 году в разных регионах давали семь разных форматов. Чаще всего попадался рассказ. Таблица прокручивается вбок.</p></div>
+  <div class="tablewrap"><table id="wtable"></table></div>
+  <div><h2>Скелеты</h2><p class="lead">Шаблон по абзацам с готовыми фразами. Объём почти везде 100–150 слов.</p></div>
+  <div class="sk-tabs" id="sktabs"></div>
+  <div class="card skel" id="skel"></div>
+</section>
+
+<section class="view" id="v-real" hidden>
+  <div><h2>Муниципальный этап 2025/26, 7–8 класс</h2><p class="lead">Разобрала задания 13 регионов с olimpiada.ru. Отдельный блок страноведения есть не везде; там, где его нет, культура спрятана в чтении и аудировании.</p></div>
+  <div class="tablewrap"><table id="rtable"></table></div>
+  <div class="grid2">
+    <div class="card facts"><h3>Форматы страноведения</h3>
+      <ul>
+        <li><b>Книга → автор</b> (СПб): 10 произведений, 10 авторов.</li>
+        <li><b>Впиши слово по буквам</b> (Свердловская обл.): одна буква в клетку, часть букв дана.</li>
+        <li><b>True / False</b> (Камчатка): 10 утверждений, есть ловушки вроде «Pride and Prejudice написал Диккенс».</li>
+        <li><b>Внутри чтения</b>: Большой театр, советы туристам в Британии (чай, очереди в Стоунхендж), Темза и «Трое в лодке», биография Гордона Брауна, слово Geordie в аудировании.</li>
+      </ul>
+    </div>
+    <div class="card facts"><h3>Что учить в первую очередь</h3>
+      <ul>
+        <li>Символы частей UK: святые, цветы, флаги, столицы.</li>
+        <li>Лондон: Тауэр, вороны, Big Ben, Tower Bridge, Downing Street, Buckingham Palace.</li>
+        <li>История: римляне, англосаксы, 1066, Gunpowder Plot, Mayflower.</li>
+        <li>Классика детской и подростковой литературы и её авторы.</li>
+        <li>Праздники: даты и происхождение.</li>
+        <li>Другие англоязычные страны: столицы, флаги, символы.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<script>
+/* ---------- illustrations ---------- */
+function star(cx,cy,r,n,inner){let p=[];for(let i=0;i<n*2;i++){const a=-Math.PI/2+i*Math.PI/n,rr=i%2?r*(inner||0.45):r;p.push((cx+rr*Math.cos(a)).toFixed(1)+','+(cy+rr*Math.sin(a)).toFixed(1));}return `<polygon points="${p.join(' ')}" fill="#fff"/>`;}
+const UJ=(x,y,w,h)=>`<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="0 0 60 30" preserveAspectRatio="none"><rect width="60" height="30" fill="#012169"/><path d="M0,0L60,30M60,0L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0L30,15M60,30L30,15" stroke="#C8102E" stroke-width="2" transform="translate(0,1.2)"/><path d="M60,0L30,15M0,30L30,15" stroke="#C8102E" stroke-width="2" transform="translate(0,-1.2)"/><path d="M30,0v30M0,15h60" stroke="#fff" stroke-width="10"/><path d="M30,0v30M0,15h60" stroke="#C8102E" stroke-width="6"/></svg>`;
+const frame=(inner,bg)=>`<svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true"><rect width="200" height="120" fill="${bg||'var(--art-sky)'}"/>${inner}</svg>`;
+const flag=(inner)=>frame(`<g transform="translate(30,22)"><rect x="2" y="3" width="140" height="76" fill="#000" opacity=".12"/>${inner}</g>`);
+const leaf="50,5 58,22 66,18 62,42 76,30 80,38 92,34 86,52 94,56 72,72 75,80 53,77 53,95 47,95 47,77 25,80 28,72 6,56 14,52 8,34 20,38 24,30 38,42 34,18 42,22";
+function usStripes(){let s='';for(let i=0;i<13;i++)s+=`<rect y="${(i*76/13).toFixed(2)}" width="140" height="${(76/13+0.2).toFixed(2)}" fill="${i%2?'#fff':'#B22234'}"/>`;s+=`<rect width="56" height="41" fill="#3C3B6E"/>`;for(let r=0;r<9;r++){const n=r%2?5:6;for(let c=0;c<n;c++){s+=`<circle cx="${(r%2?9:4.7)+c*9.3}" cy="${3.8+r*4.2}" r="1.3" fill="#fff"/>`;}}return s;}
+const ART={
+ saltire:flag(`<svg width="140" height="76" viewBox="0 0 5 3" preserveAspectRatio="none"><rect width="5" height="3" fill="#005EB8"/><path d="M0 0L5 3M5 0L0 3" stroke="#fff" stroke-width=".6"/></svg>`),
+ unionjack:flag(UJ(0,0,140,76)),
+ usflag:flag(usStripes()),
+ canada:flag(`<rect width="140" height="76" fill="#fff"/><rect width="35" height="76" fill="#D52B1E"/><rect x="105" width="35" height="76" fill="#D52B1E"/><polygon points="${leaf}" fill="#D52B1E" transform="translate(44,9) scale(.52)"/>`),
+ australia:flag(`<rect width="140" height="76" fill="#012169"/>${UJ(0,0,70,38)}${star(35,57,10,7,.45)}${star(105,62,6,7,.45)}${star(88,36,6,7,.45)}${star(105,14,6,7,.45)}${star(122,32,6,7,.45)}${star(113,44,3,5,.45)}`),
+ thistle:frame(`<rect y="100" width="200" height="20" fill="var(--art-ground)"/><path d="M100 118V62" stroke="#3F7A3A" stroke-width="4"/><path d="M100 96l-34-14 12-2-10-8 14 2-4-10 22 20zM100 86l34-12-12-3 10-7-14 2 4-10-22 19z" fill="#4F8F46"/><ellipse cx="100" cy="58" rx="15" ry="13" fill="#5E9A4C"/><path d="M88 52l24 12M112 52l-24 12M100 46v24" stroke="#3F7A3A" stroke-width="1.5"/><g stroke="#8E4FB8" stroke-width="3" stroke-linecap="round">${Array.from({length:13},(_,i)=>{const a=(-160+i*11.5)*Math.PI/180;return `<line x1="100" y1="46" x2="${(100+26*Math.cos(a)).toFixed(1)}" y2="${(46+26*Math.sin(a)).toFixed(1)}"/>`}).join('')}</g>`),
+ shamrock:frame(`<path d="M100 66 C102 86 108 100 118 112" stroke="#2F7A3A" stroke-width="5" fill="none"/><g fill="#3A9A48"><path d="M100 64 C80 64 72 44 84 36 C92 30 100 38 100 46 C100 38 108 30 116 36 C128 44 120 64 100 64Z" transform="rotate(0 100 64) translate(0,-14)"/><path d="M100 64 C80 64 72 44 84 36 C92 30 100 38 100 46 C100 38 108 30 116 36 C128 44 120 64 100 64Z" transform="rotate(118 100 64) translate(0,-14)"/><path d="M100 64 C80 64 72 44 84 36 C92 30 100 38 100 46 C100 38 108 30 116 36 C128 44 120 64 100 64Z" transform="rotate(-118 100 64) translate(0,-14)"/></g>`),
+ bigben:frame(`<rect y="108" width="200" height="12" fill="var(--art-stone)"/><rect x="86" y="44" width="28" height="66" fill="#C9A86A"/><g stroke="#8E7444" stroke-width="1.5">${[56,66,76,86,96].map(y=>`<line x1="90" y1="${y+8}" x2="110" y2="${y+8}"/>`).join('')}</g><rect x="82" y="30" width="36" height="30" fill="#D8B978"/><circle cx="100" cy="45" r="11" fill="#FFF8E6" stroke="#5A4520" stroke-width="2"/><path d="M100 45V37M100 45l6 3" stroke="#2A2010" stroke-width="2" stroke-linecap="round"/><path d="M82 30L100 8L118 30Z" fill="#4E5A52"/><path d="M100 8V0" stroke="#4E5A52" stroke-width="2"/><rect x="40" y="76" width="46" height="34" fill="#BFA06A"/><rect x="114" y="76" width="46" height="34" fill="#BFA06A"/>`),
+ towerbridge:frame(`<rect y="92" width="200" height="28" fill="var(--art-water)"/><path d="M0 70 Q40 60 60 40 M140 40 Q160 60 200 70" stroke="#5B8DB8" stroke-width="3" fill="none"/><rect x="0" y="78" width="200" height="6" fill="#5B8DB8"/><rect x="74" y="36" width="52" height="7" fill="#5B8DB8"/><g fill="#D9CFBE"><rect x="54" y="30" width="20" height="66"/><rect x="126" y="30" width="20" height="66"/></g><g fill="#6D7B88"><path d="M54 30L64 12L74 30Z"/><path d="M126 30L136 12L146 30Z"/></g><g fill="#3E4A57"><rect x="60" y="44" width="8" height="12" rx="4"/><rect x="132" y="44" width="8" height="12" rx="4"/></g>`),
+ raven:frame(`<rect y="70" width="200" height="50" fill="var(--art-stone)"/><g fill="var(--art-stone)"><rect x="10" y="56" width="26" height="16"/><rect x="58" y="56" width="26" height="16"/><rect x="106" y="56" width="26" height="16"/><rect x="154" y="56" width="26" height="16"/></g><g fill="#111"><ellipse cx="120" cy="40" rx="22" ry="13" transform="rotate(-12 120 40)"/><circle cx="141" cy="27" r="9"/><path d="M148 24L163 28L148 31Z" fill="#222"/><path d="M100 46L80 56L98 50Z"/><path d="M114 52L112 58M124 51L124 58" stroke="#111" stroke-width="3"/></g><circle cx="143" cy="25" r="1.6" fill="#fff"/>`),
+ stonehenge:frame(`<rect y="88" width="200" height="32" fill="var(--art-ground)"/><g fill="#8D9097"><rect x="30" y="50" width="14" height="42"/><rect x="56" y="50" width="14" height="42"/><rect x="26" y="42" width="48" height="10"/><rect x="88" y="44" width="16" height="48"/><rect x="118" y="44" width="16" height="48"/><rect x="84" y="36" width="54" height="10"/><rect x="150" y="56" width="13" height="36"/><rect x="172" y="62" width="12" height="30" transform="rotate(8 178 77)"/></g>`),
+ bonfire:frame(`${[[40,30],[160,26],[130,50]].map(([x,y])=>Array.from({length:10},(_,i)=>{const a=i*Math.PI/5;return `<circle cx="${(x+14*Math.cos(a)).toFixed(1)}" cy="${(y+14*Math.sin(a)).toFixed(1)}" r="2" fill="${['#FFD25A','#FF7AA8','#7AD0FF'][x%3]}"/>`}).join('')).join('')}<rect y="104" width="200" height="16" fill="#26301F"/><path d="M70 108L130 96M70 96L130 108" stroke="#6B4423" stroke-width="7" stroke-linecap="round"/><path d="M78 100C72 80 90 74 86 52C98 64 100 72 100 60C110 72 108 82 116 70C124 84 122 96 120 100Z" fill="#F07A1A"/><path d="M90 100C88 88 96 84 96 74C104 84 104 90 110 84C112 92 112 98 110 100Z" fill="#FFD25A"/>`, 'var(--art-night)'),
+ pumpkin:frame(`<rect y="98" width="200" height="22" fill="#4A3A2A"/><g fill="#E8731A"><ellipse cx="78" cy="74" rx="20" ry="28"/><ellipse cx="122" cy="74" rx="20" ry="28"/><ellipse cx="100" cy="74" rx="26" ry="30" fill="#F58A2A"/></g><path d="M100 44C100 36 104 32 110 30" stroke="#3F7A3A" stroke-width="5" fill="none"/><g fill="#2A1A0A"><path d="M82 64L92 64L87 54Z"/><path d="M108 64L118 64L113 54Z"/><path d="M96 74L104 74L100 68Z"/><path d="M76 82Q100 98 124 82L118 86L112 82L106 88L100 84L94 88L88 82L82 86Z"/></g>`, '#3B2D57'),
+ turkey:frame(`<rect y="100" width="200" height="20" fill="var(--art-ground)"/>${['#C0392B','#E67E22','#F1C40F','#8E5A2B','#E67E22','#C0392B'].map((c,i)=>`<ellipse cx="100" cy="40" rx="9" ry="34" fill="${c}" transform="rotate(${-62+i*25} 100 72)"/>`).join('')}<circle cx="100" cy="76" r="22" fill="#7A4A26"/><circle cx="100" cy="52" r="10" fill="#8B5A30"/><path d="M106 52L116 55L106 58Z" fill="#F1C40F"/><path d="M104 58C108 64 106 70 102 66" stroke="#D0312D" stroke-width="4" fill="none"/><circle cx="103" cy="49" r="1.8" fill="#111"/><path d="M92 96V108M108 96V108" stroke="#E0A030" stroke-width="3"/>`),
+ mayflower:frame(`<rect y="90" width="200" height="30" fill="var(--art-water)"/><path d="M0 92Q12 86 24 92T48 92T72 92T96 92T120 92T144 92T168 92T192 92T216 92" stroke="#fff" stroke-width="2" fill="none" opacity=".7"/><path d="M40 78H160L150 96H52Z" fill="#6B4423"/><path d="M40 78L34 66H56L58 78Z" fill="#7C5230"/><path d="M160 78L168 64H146L144 78Z" fill="#7C5230"/><g stroke="#4A2E16" stroke-width="3"><line x1="76" y1="78" x2="76" y2="14"/><line x1="106" y1="78" x2="106" y2="8"/><line x1="134" y1="78" x2="134" y2="24"/></g><g fill="#F4EEDD"><path d="M62 24Q76 30 90 24V44Q76 50 62 44Z"/><path d="M62 50Q76 56 90 50V68Q76 74 62 68Z"/><path d="M90 16Q106 22 122 16V40Q106 46 90 40Z"/><path d="M90 46Q106 52 122 46V68Q106 74 90 68Z"/><path d="M122 32Q134 38 146 32V52Q134 58 122 52Z"/></g>`),
+ liberty:frame(`<rect y="104" width="200" height="16" fill="var(--art-water)"/><path d="M80 104L84 80H116L120 104Z" fill="#9A9488"/><g fill="#5FA894"><path d="M88 80L92 46L108 46L112 80Z"/><circle cx="100" cy="38" r="8"/><path d="M106 46L118 18L122 20L112 48Z"/><rect x="84" y="52" width="10" height="14" rx="1" fill="#4E9480"/></g><g stroke="#5FA894" stroke-width="2.5" stroke-linecap="round">${[-150,-120,-90,-60,-30].map(a=>{const r=a*Math.PI/180;return `<line x1="${(100+8*Math.cos(r)).toFixed(1)}" y1="${(36+8*Math.sin(r)).toFixed(1)}" x2="${(100+16*Math.cos(r)).toFixed(1)}" y2="${(36+16*Math.sin(r)).toFixed(1)}"/>`}).join('')}</g><path d="M120 18C114 10 120 4 122 0C126 6 128 12 120 18Z" fill="#F5A623"/>`),
+ eagle:frame(`<path d="M30 120C40 80 70 64 96 66L140 120Z" fill="#4A2E1A"/><path d="M92 70C76 54 84 28 108 26C128 24 140 36 142 48L150 52C150 58 144 62 138 60C130 72 110 80 92 70Z" fill="#F6F4EE"/><path d="M138 44C150 44 160 52 158 62C154 58 148 56 142 58L136 52Z" fill="#F2B705"/><circle cx="126" cy="42" r="3" fill="#1A1A1A"/><path d="M118 38Q126 34 134 38" stroke="#8A7A5A" stroke-width="2" fill="none"/>`),
+ goldengate:frame(`<path d="M0 84Q30 66 60 80V120H0Z" fill="var(--art-ground)"/><path d="M150 82Q180 64 200 74V120H150Z" fill="var(--art-ground)"/><rect y="90" width="200" height="30" fill="var(--art-water)"/><rect x="0" y="80" width="200" height="5" fill="#C0362C"/><path d="M0 40Q30 78 56 22Q100 80 144 22Q170 78 200 40" stroke="#C0362C" stroke-width="2.5" fill="none"/><g fill="#C0362C"><rect x="52" y="20" width="8" height="78"/><rect x="140" y="20" width="8" height="78"/></g><g stroke="#C0362C" stroke-width="1">${[66,76,86,96,106,116,126].map(x=>`<line x1="${x}" y1="${(22+0.9*Math.pow((x-100)/44,2)*0+ (58-36*Math.pow((x-100)/44,2))).toFixed(1)}" x2="${x}" y2="80"/>`).join('')}</g>`),
+ tartan:frame(`<rect width="200" height="120" fill="#B3262E"/><g fill="#123E2A" opacity=".75"><rect x="20" width="34" height="120"/><rect x="100" width="34" height="120"/><rect y="20" width="200" height="30"/><rect y="84" width="200" height="30"/></g><g fill="#0E1D47" opacity=".6"><rect x="64" width="14" height="120"/><rect x="150" width="14" height="120"/><rect y="58" width="200" height="12"/></g><g fill="#F2C94C"><rect x="36" width="2" height="120"/><rect x="116" width="2" height="120"/><rect y="34" width="200" height="2"/><rect y="98" width="200" height="2"/></g>`),
+ nessie:frame(`<path d="M0 70Q40 40 80 62Q120 36 200 60V120H0Z" fill="#5C7F56"/><g fill="#6B6E74"><rect x="150" y="38" width="20" height="26"/><rect x="146" y="32" width="6" height="8"/><rect x="168" y="32" width="6" height="8"/></g><rect y="72" width="200" height="48" fill="var(--art-water)"/><g fill="#3E7A52"><path d="M40 96Q52 80 64 96Z"/><path d="M76 96Q90 76 104 96Z"/><path d="M110 96C110 74 116 54 126 50C134 48 140 54 136 58C130 56 124 62 122 96Z"/></g><circle cx="130" cy="53" r="1.6" fill="#fff"/><path d="M30 98H150" stroke="#fff" stroke-width="2" opacity=".6"/>`),
+ door:frame(`<rect width="200" height="120" fill="#9E4A35"/><g stroke="#7E3725" stroke-width="1.2">${Array.from({length:12},(_,i)=>`<line x1="0" y1="${i*10}" x2="200" y2="${i*10}"/>`).join('')}</g><rect x="66" y="10" width="68" height="110" fill="#ECE6D8"/><path d="M72 40A28 28 0 0 1 128 40Z" fill="#CFE3EE" stroke="#ECE6D8" stroke-width="2"/><rect x="72" y="40" width="56" height="80" fill="#1E3B2C"/><g fill="none" stroke="#2F5641" stroke-width="2"><rect x="78" y="48" width="18" height="28"/><rect x="104" y="48" width="18" height="28"/><rect x="78" y="84" width="18" height="30"/><rect x="104" y="84" width="18" height="30"/></g><rect x="84" y="20" width="32" height="13" rx="2" fill="#2A2A2A"/><text x="100" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="10" fill="#F0E2B6">221B</text><circle cx="100" cy="82" r="3" fill="#D4AF37"/>`),
+ wall:frame(`<path d="M0 70Q50 40 100 62T200 54V120H0Z" fill="var(--art-ground)"/><path d="M0 74Q50 44 100 66T200 58" stroke="#8D8A82" stroke-width="10" fill="none"/><path d="M0 74Q50 44 100 66T200 58" stroke="#6E6B64" stroke-width="10" fill="none" stroke-dasharray="2 8"/><rect x="128" y="44" width="16" height="18" fill="#8D8A82"/>`),
+ pancake:frame(`<rect y="96" width="200" height="24" fill="#B98B5A"/><path d="M132 66L188 52" stroke="#2A2A2A" stroke-width="9" stroke-linecap="round"/><ellipse cx="92" cy="72" rx="48" ry="24" fill="#2E2E2E"/><ellipse cx="92" cy="68" rx="38" ry="17" fill="#E8B866"/><g fill="#C98A3A" opacity=".7"><ellipse cx="80" cy="66" rx="6" ry="3"/><ellipse cx="102" cy="72" rx="7" ry="3"/><ellipse cx="96" cy="62" rx="4" ry="2"/></g><path d="M40 30A16 16 0 0 1 64 46Z" fill="#F5D33A"/>`),
+ crown:frame(`<path d="M56 92L48 44L76 66L100 32L124 66L152 44L144 92Z" fill="#E2B33C"/><path d="M60 68Q100 44 140 68L144 92H56Z" fill="#6B2C91" opacity=".85"/><rect x="54" y="88" width="92" height="14" rx="3" fill="#D4A22A"/><g><circle cx="48" cy="42" r="5" fill="#F6E1A0"/><circle cx="100" cy="30" r="6" fill="#F6E1A0"/><circle cx="152" cy="42" r="5" fill="#F6E1A0"/><circle cx="76" cy="95" r="4" fill="#C8102E"/><circle cx="100" cy="95" r="4" fill="#1E5AA8"/><circle cx="124" cy="95" r="4" fill="#2E8B57"/></g>`),
+ apple:frame(`<rect y="96" width="200" height="24" fill="#41506E"/><g fill="#2E3A55">${[[10,60],[28,40],[44,70],[150,50],[166,30],[182,64]].map(([x,y])=>`<rect x="${x}" y="${y}" width="16" height="${100-y}"/>`).join('')}</g><path d="M100 40C84 28 62 36 64 62C66 88 84 102 100 96C116 102 134 88 136 62C138 36 116 28 100 40Z" fill="#D7263D"/><path d="M100 40C100 30 104 24 110 20" stroke="#5A3A1A" stroke-width="4" fill="none"/><path d="M104 30C112 18 126 20 128 22C120 32 110 32 104 30Z" fill="#3A9A48"/><ellipse cx="82" cy="54" rx="6" ry="10" fill="#fff" opacity=".3"/>`),
+ kiwi:frame(`<rect y="98" width="200" height="22" fill="var(--art-ground)"/><ellipse cx="96" cy="70" rx="40" ry="28" fill="#7A5A3A"/><circle cx="134" cy="56" r="12" fill="#6E5034"/><path d="M144 58Q170 66 186 84" stroke="#D9C9A0" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="138" cy="53" r="2" fill="#111"/><path d="M86 96V108H80M106 96V108H112" stroke="#D9B26A" stroke-width="3" fill="none"/>`)
+};
+
+/* ---------- data ---------- */
+const MC=[
+ {c:'uk',art:'saltire',q:"This flag shows the cross of the patron saint of Scotland. Who is he?",o:["St George","St Andrew","St Patrick","St David"],a:1,e:"Синий флаг с белым косым крестом — Saltire, крест святого Андрея. Его день — 30 ноября. St George — Англия, St Patrick — Ирландия, St David — Уэльс."},
+ {c:'uk',art:'unionjack',q:"The Union Flag combines the crosses of three patron saints. Which part of the UK is NOT represented on it?",o:["England","Scotland","Wales","Northern Ireland"],a:2,e:"На Union Jack кресты святого Георгия (Англия), святого Андрея (Шотландия) и святого Патрика (Ирландия). Уэльс к моменту создания флага уже считался частью Англии, поэтому его дракона на флаге нет."},
+ {c:'uk',art:'thistle',q:"This prickly purple plant is the national emblem of…",o:["England","Wales","Scotland","Northern Ireland"],a:2,e:"Thistle (чертополох) — Шотландия. Rose — Англия, daffodil и leek (нарцисс и лук-порей) — Уэльс, shamrock — Ирландия."},
+ {c:'uk',art:'shamrock',q:"People wear this plant on 17 March. Which holiday is it?",o:["St David's Day","St Andrew's Day","St George's Day","St Patrick's Day"],a:3,e:"Shamrock (трилистник) — символ Ирландии. По легенде, святой Патрик объяснял на нём Троицу. День святого Патрика — 17 марта."},
+ {c:'uk',art:'bigben',q:"What does the name 'Big Ben' really refer to?",o:["the whole clock tower","the great bell inside the tower","the clock face","the Palace of Westminster"],a:1,e:"Big Ben — это колокол. Сама башня с 2012 года официально называется Elizabeth Tower (раньше Clock Tower). Классическая олимпиадная ловушка."},
+ {c:'uk',art:'towerbridge',q:"Tourists often call this bridge 'London Bridge'. What is its real name?",o:["Westminster Bridge","Millennium Bridge","Tower Bridge","Waterloo Bridge"],a:2,e:"Это Tower Bridge (1894), он стоит рядом с Тауэром. Настоящий London Bridge выглядит очень скромно, туристы часто их путают."},
+ {c:'uk',art:'raven',q:"According to legend, the kingdom will fall if these birds ever leave…",o:["the Tower of London","Buckingham Palace","Westminster Abbey","St Paul's Cathedral"],a:0,e:"В Тауэре живут как минимум шесть воронов (ravens). За ними ухаживает Ravenmaster, один из Yeoman Warders, которых в шутку зовут Beefeaters."},
+ {c:'uk',art:'stonehenge',q:"Stonehenge stands on Salisbury Plain. In which English county is it?",o:["Kent","Wiltshire","Cornwall","Yorkshire"],a:1,e:"Стоунхендж находится в графстве Wiltshire, на юго-западе Англии. Ему около 5000 лет."},
+ {c:'uk',art:'bonfire',q:"On 5 November the British remember the Gunpowder Plot of 1605. What did the plotters want to blow up?",o:["the Tower of London","London Bridge","the Houses of Parliament","Buckingham Palace"],a:2,e:"Заговорщики хотели взорвать парламент вместе с королём Яковом I. Guy Fawkes охранял порох в подвале. Сейчас 5 ноября — Bonfire Night: костры, фейерверки и чучело, которое называют guy."},
+ {c:'uk',art:'pumpkin',q:"Halloween goes back to an ancient Celtic festival called…",o:["Beltane","Hogmanay","Samhain","Lammas"],a:2,e:"Samhain (произносится «сауин») — кельтский праздник конца лета, 31 октября. Beltane — кельтский праздник 1 мая, Hogmanay — шотландский Новый год."},
+ {c:'usa',art:'turkey',q:"When do Americans celebrate Thanksgiving?",o:["on 4 July","on the last Monday of May","on the fourth Thursday of November","on the first Monday of September"],a:2,e:"Thanksgiving — четвёртый четверг ноября. 4 июля — Independence Day, последний понедельник мая — Memorial Day, первый понедельник сентября — Labor Day."},
+ {c:'usa',art:'mayflower',q:"In 1620 the Mayflower brought the Pilgrims to America. Which colony did they found?",o:["Jamestown","New Amsterdam","Plymouth","Boston"],a:2,e:"Пилигримы основали Plymouth Colony. Jamestown основан раньше, в 1607 году, New Amsterdam — голландцы (будущий Нью-Йорк), Boston — 1630."},
+ {c:'usa',art:'liberty',q:"The Statue of Liberty was a present to the USA from…",o:["Britain","Spain","France","the Netherlands"],a:2,e:"Статую подарила Франция в 1886 году к столетию независимости США. Каркас проектировал Гюстав Эйфель."},
+ {c:'usa',art:'eagle',q:"The bald eagle is a symbol of the USA. What does 'bald' mean in its name?",o:["without feathers on its head","white-headed","very old","very fast"],a:1,e:"Старое английское слово balde значило «белый, с белой отметиной». У орлана белая голова, а не лысая. Хороший пример лингвострановедения."},
+ {c:'usa',art:'usflag',q:"What do the 13 stripes on the US flag stand for?",o:["the 13 first presidents","the 13 original colonies","the 13 largest states","the 13 Founding Fathers"],a:1,e:"13 полос — 13 первых колоний, 50 звёзд — 50 штатов. Флаг называют Stars and Stripes или Old Glory."},
+ {c:'usa',art:'goldengate',q:"The Golden Gate Bridge is a symbol of which American city?",o:["New York","Chicago","Los Angeles","San Francisco"],a:3,e:"Golden Gate Bridge (1937) — Сан-Франциско. Кстати, он не золотой, а красно-оранжевый: цвет называется International Orange."},
+ {c:'usa',art:'apple',q:"Which US city is nicknamed 'The Big Apple'?",o:["Boston","New York","Chicago","Philadelphia"],a:1,e:"The Big Apple — Нью-Йорк. Chicago — The Windy City, Los Angeles — City of Angels, Philadelphia — City of Brotherly Love."},
+ {c:'world',art:'canada',q:"What is the capital of the country with this flag?",o:["Toronto","Ottawa","Montreal","Vancouver"],a:1,e:"Флаг с кленовым листом — Канада, столица — Ottawa. Toronto — самый большой город, но не столица."},
+ {c:'world',art:'australia',q:"What is the capital of the country with this flag?",o:["Sydney","Melbourne","Canberra","Perth"],a:2,e:"Столица Австралии — Canberra. Её построили специально, потому что Сидней и Мельбурн спорили, кто будет столицей. Звёзды на флаге — созвездие Южный Крест."},
+ {c:'world',art:'kiwi',q:"People from New Zealand are often called 'Kiwis'. Originally, a kiwi is…",o:["a fruit","a flightless bird","a type of boat","a traditional dance"],a:1,e:"Kiwi — нелетающая птица, символ Новой Зеландии. Фрукт назвали в честь птицы позже. Традиционный танец маори — haka."},
+ {c:'uk',art:'tartan',q:"This pattern of crossing coloured stripes, used on kilts, is called…",o:["tweed","paisley","tartan","argyle"],a:2,e:"Tartan — клетка, у каждого шотландского клана своя. Tweed — ткань, paisley — «огурцы», argyle — ромбы."},
+ {c:'uk',art:'nessie',q:"In Scottish place names such as Loch Ness or Loch Lomond, the word 'loch' means…",o:["a castle","a lake","a mountain","a valley"],a:1,e:"Loch — озеро (в Ирландии — lough). Глен (glen) — долина, Ben — гора: Ben Nevis."},
+ {c:'lit',art:'door',q:"Which fictional detective lived at 221B Baker Street?",o:["Hercule Poirot","Sherlock Holmes","Miss Marple","Father Brown"],a:1,e:"Шерлок Холмс, автор — Arthur Conan Doyle. Poirot и Miss Marple — Agatha Christie, Father Brown — G. K. Chesterton."},
+ {c:'uk',art:'wall',q:"Hadrian's Wall in the north of England was built by…",o:["the Vikings","the Normans","the Romans","the Anglo-Saxons"],a:2,e:"Стену построили римляне около 122 года н. э. по приказу императора Адриана, чтобы защищаться от племён с севера."},
+ {c:'uk',art:'pancake',q:"'Pancake Day' in Britain is the popular name for…",o:["Shrove Tuesday","Boxing Day","Good Friday","Bank Holiday Monday"],a:0,e:"Shrove Tuesday — вторник перед Великим постом. Пекут блины и устраивают pancake races, бег со сковородкой."},
+ {c:'uk',art:'crown',q:"Elizabeth II is the longest-reigning British monarch. For how many years did she reign?",o:["50","63","70","75"],a:2,e:"70 лет (1952–2022). 63 года правила королева Виктория, она на втором месте."},
+ {c:'uk',q:"Which of these islands is NOT a Crown Dependency?",o:["Jersey","Guernsey","the Isle of Man","the Isle of Wight"],a:3,e:"Jersey, Guernsey и Isle of Man — коронные владения: они принадлежат короне, но не входят в UK. Isle of Wight — обычная часть Англии."},
+ {c:'uk',q:"What is the capital of Wales?",o:["Swansea","Belfast","Cardiff","Edinburgh"],a:2,e:"Cardiff — Уэльс, Edinburgh — Шотландия, Belfast — Северная Ирландия. Swansea — второй город Уэльса."},
+ {c:'uk',q:"Boxing Day is celebrated on…",o:["24 December","26 December","1 January","6 January"],a:1,e:"26 декабря. Название связано с коробками (boxes) с подарками и деньгами, которые дарили слугам и работникам."},
+ {c:'uk',q:"Londoners call the London Underground…",o:["the Metro","the Subway","the Tube","the Loop"],a:2,e:"The Tube — старейшее метро мира (1863). В США говорят subway, в Чикаго — the L, в Париже — Métro."}
+];
+const TF=[
+ {s:"The Union Flag combines the crosses of St George, St Andrew and St Patrick.",a:true,e:"Верно: Англия, Шотландия, Ирландия."},
+ {s:"Wales is represented on the Union Flag.",a:false,e:"Неверно: креста или дракона Уэльса на нём нет."},
+ {s:"The Isle of Man is part of the United Kingdom.",a:false,e:"Неверно: это Crown Dependency, у острова свой парламент Tynwald."},
+ {s:"Big Ben is the name of the great bell, not of the tower.",a:true,e:"Верно: башня называется Elizabeth Tower."},
+ {s:"'Pride and Prejudice' was written by Charles Dickens.",a:false,e:"Неверно: Jane Austen. Такое утверждение было на Камчатке в 2025 году."},
+ {s:"In Scotland, New Year's Eve is called Hogmanay.",a:true,e:"Верно. Есть обычай first-footing: первый гость после полуночи приносит удачу."},
+ {s:"Americans celebrate Thanksgiving on the last Monday of November.",a:false,e:"Неверно: четвёртый четверг ноября."},
+ {s:"Canberra, not Sydney, is the capital of Australia.",a:true,e:"Верно."},
+ {s:"Hadrian's Wall was built by the Vikings.",a:false,e:"Неверно: римляне, II век."},
+ {s:"Ben Nevis is the highest mountain in the British Isles.",a:true,e:"Верно: 1345 м, Шотландия."},
+ {s:"Washington, D.C. is located in the state of Washington.",a:false,e:"Неверно: D.C. — District of Columbia, отдельный округ на восточном побережье. Штат Washington — на западе."},
+ {s:"The Statue of Liberty was a gift from Britain.",a:false,e:"Неверно: от Франции."},
+ {s:"Boxing Day is celebrated on 26 December.",a:true,e:"Верно."},
+ {s:"The River Severn is the longest river in the UK.",a:true,e:"Верно: Severn длиннее Темзы."},
+ {s:"The unicorn on the Royal Coat of Arms represents Scotland.",a:true,e:"Верно: лев — Англия, единорог — Шотландия."},
+ {s:"Romeo and Juliet takes place in London.",a:false,e:"Неверно: в итальянском городе Верона."}
+];
+const AUTH=["Robert Louis Stevenson","Daniel Defoe","Rudyard Kipling","J. M. Barrie","Kenneth Grahame","Jerome K. Jerome","Jonathan Swift","P. L. Travers","Mark Twain","Jane Austen","Lewis Carroll","Charles Dickens","Arthur Conan Doyle","Agatha Christie"];
+const LET="ABCDEFGHIJKLMN";
+const BOOKS=[["Treasure Island",0],["Robinson Crusoe",1],["The Jungle Book",2],["Peter Pan",3],["The Wind in the Willows",4],["Three Men in a Boat",5],["Gulliver's Travels",6],["Mary Poppins",7],["The Adventures of Tom Sawyer",8],["Pride and Prejudice",9],["Alice's Adventures in Wonderland",10],["Oliver Twist",11]];
+const GAP=[
+ {s:"William the _____ won the Battle of Hastings in 1066 and became King of England.",w:"CONQUEROR",h:[0,3,6]},
+ {s:"The Crown Jewels are kept in the _____ of London.",w:"TOWER",h:[0]},
+ {s:"The Anglo-_____ came to Britain after the Romans and gave English many words.",w:"SAXONS",h:[1,4]},
+ {s:"_____ Palace is the official London residence of the British monarch.",w:"BUCKINGHAM",h:[0,4,8]},
+ {s:"Number 10 _____ Street is the home of the British Prime Minister.",w:"DOWNING",h:[0,4]},
+ {s:"The British Parliament has two houses: the House of Commons and the House of _____.",w:"LORDS",h:[0]},
+ {s:"Sherlock Holmes lived at 221B _____ Street.",w:"BAKER",h:[3]},
+ {s:"On 5 November people in Britain celebrate _____ Night with fireworks.",w:"BONFIRE",h:[0,4]},
+ {s:"In 1620 the Pilgrims sailed to America on the ship called the _____.",w:"MAYFLOWER",h:[0,3,7]},
+ {s:"The USA declared its independence on the 4th of _____ 1776.",w:"JULY",h:[0]},
+ {s:"The native people of New Zealand are called the _____.",w:"MAORI",h:[0]},
+ {s:"John Lennon became famous as a member of the _____, a band from Liverpool.",w:"BEATLES",h:[1,5]},
+ {s:"The prehistoric stone circle on Salisbury Plain is called _____.",w:"STONEHENGE",h:[0,5,8]},
+ {s:"The Tower of London is guarded by Yeoman Warders, also known as _____.",w:"BEEFEATERS",h:[0,4,8]},
+ {s:"Scotland's famous lake with a legendary monster is Loch _____.",w:"NESS",h:[0]}
+];
+
+/* ---------- quiz engine ---------- */
+const CATS={all:"Все",uk:"Британия",usa:"США",world:"Другие страны",lit:"Литература"};
+const MODES=[["mc","Выбор ответа",MC.length+" вопросов с картинками"],["tf","True / False",TF.length+" утверждений"],["match","Книга → автор",BOOKS.length+" книг"],["gap","Впиши слово",GAP.length+" слов по буквам"]];
+let mode="mc",cat="all",idx=0;
+let st={mc:{},tf:{},match:null,gap:null};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function mcList(){return MC.map((q,i)=>({...q,i})).filter(q=>cat==="all"||q.c===cat);}
+function renderModes(){
+  $("#modes").innerHTML=MODES.map(([k,t,s])=>`<button class="mode" aria-pressed="${k===mode}" data-mode="${k}"><b>${t}</b><span>${s}</span></button>`).join("");
+}
+function scoreText(){
+  if(mode==="mc"){const L=mcList();const done=L.filter(q=>st.mc[q.i]!==undefined);const ok=done.filter(q=>st.mc[q.i]===q.a).length;return `Отвечено <strong>${done.length}/${L.length}</strong> · верно <strong>${ok}</strong>`;}
+  if(mode==="tf"){const d=Object.keys(st.tf);const ok=d.filter(k=>st.tf[k]===TF[k].a).length;return `Отвечено <strong>${d.length}/${TF.length}</strong> · верно <strong>${ok}</strong>`;}
+  if(mode==="match")return st.match?`Результат: <strong>${st.match}/${BOOKS.length}</strong>`:`Выберите автора для каждой книги и нажмите «Проверить»`;
+  if(mode==="gap")return st.gap!==null?`Результат: <strong>${st.gap}/${GAP.length}</strong>`:`Одна буква в клетку. Часть букв уже дана`;
+}
+function render(){
+  renderModes();$("#scoreline").innerHTML=scoreText();
+  const S=$("#stage");
+  if(mode==="mc")return renderMC(S);
+  if(mode==="tf")return renderTF(S);
+  if(mode==="match")return renderMatch(S);
+  renderGap(S);
+}
+function renderMC(S){
+  const L=mcList();if(idx>=L.length)idx=0;const q=L[idx];const ans=st.mc[q.i];
+  const filters=`<div class="filters">${Object.entries(CATS).map(([k,v])=>`<button class="chip" data-cat="${k}" aria-pressed="${k===cat}">${v}</button>`).join("")}</div>`;
+  const opts=q.o.map((o,j)=>{let cls="";if(ans!==undefined){if(j===q.a)cls="right";else if(j===ans)cls="wrong";}return `<button class="opt ${cls}" data-opt="${j}" ${ans!==undefined?"disabled":""}><span class="k">${"ABCD"[j]}</span><span>${esc(o)}</span></button>`}).join("");
+  const exp=ans!==undefined?`<div class="explain"><b style="color:${ans===q.a?'var(--ok)':'var(--bad)'}">${ans===q.a?"Верно":"Неверно, правильный ответ "+"ABCD"[q.a]}</b>${esc(q.e)}</div>`:"";
+  const dots=L.map((x,j)=>{const a=st.mc[x.i];let c=j===idx?"cur ":"";if(a!==undefined)c+=a===x.a?"r":"w";return `<button class="dot ${c}" data-jump="${j}" aria-label="Вопрос ${j+1}">${j+1}</button>`}).join("");
+  S.innerHTML=`${filters}
+  <div class="card qcard ${q.art?"":"noart"}">${q.art?`<div class="art">${ART[q.art]}</div>`:""}
+    <div><div class="qmeta"><span>Вопрос ${idx+1} из ${L.length}</span><span>${CATS[q.c]}</span></div><p class="qtext">${esc(q.q)}</p><div class="opts">${opts}</div>${exp}</div></div>
+  <div class="pager"><button class="nav" data-step="-1" ${idx===0?"disabled":""}>← Назад</button><div class="dots">${dots}</div><button class="nav primary" data-step="1" ${idx===L.length-1?"disabled":""}>Дальше →</button></div>`;
+}
+function renderTF(S){
+  S.innerHTML=`<p class="lead">Read the sentences and decide if they are True (T) or False (F). Формат Камчатки 2025.</p><div class="list">${TF.map((t,i)=>{const a=st.tf[i];const btn=(v,l)=>{let c="";if(a!==undefined){if(v===t.a)c="right";else if(v===a)c="wrong";}return `<button class="${c}" data-tf="${i}" data-v="${v}" ${a!==undefined?"disabled":""}>${l}</button>`};return `<div class="row"><div><span class="n">${i+1}</span>${esc(t.s)}</div><div class="tf">${btn(true,"T")}${btn(false,"F")}</div>${a!==undefined?`<div class="note ${a===t.a?"ok":"bad"}">${esc(t.e)}</div>`:""}</div>`}).join("")}</div>`;
+}
+function renderMatch(S){
+  const checked=st.match!==null;
+  S.innerHTML=`<p class="lead">Match the books with their authors. Формат Санкт-Петербурга 2025, но сложнее: два автора лишние.</p>
+  <div class="card"><div class="pool">${AUTH.map((a,i)=>`<span><b>${LET[i]}</b> ${esc(a)}</span>`).join("")}</div></div>
+  <div class="list">${BOOKS.map(([b,k],i)=>`<div class="row"><div class="match"><div><span class="n">${i+1}</span><i>${esc(b)}</i></div><select id="m${i}" data-m="${i}"><option value="">— выберите —</option>${AUTH.map((a,j)=>`<option value="${j}">${LET[j]} · ${esc(a)}</option>`).join("")}</select></div>${checked?`<div class="note" id="mn${i}"></div>`:""}</div>`).join("")}</div>
+  <div class="actions"><button class="btn" id="mcheck">Проверить</button><span class="result" id="mres"></span></div>`;
+  if(window._mvals)window._mvals.forEach((v,i)=>{const el=$("#m"+i);if(el)el.value=v;});
+  if(checked)checkMatch(true);
+}
+function checkMatch(silent){
+  let ok=0;window._mvals=BOOKS.map((_,i)=>$("#m"+i).value);
+  BOOKS.forEach(([b,k],i)=>{const el=$("#m"+i);const v=el.value;el.classList.remove("right","wrong");el.classList.add(String(k)===v?"right":"wrong");if(String(k)===v)ok++;
+    let n=$("#mn"+i);if(!n){n=document.createElement("div");n.className="note";n.id="mn"+i;el.closest(".row").appendChild(n);}
+    n.className="note "+(String(k)===v?"ok":"bad");n.textContent=String(k)===v?"Верно":"Правильно: "+LET[k]+" · "+AUTH[k];});
+  st.match=ok;$("#mres").textContent=`${ok} из ${BOOKS.length}`;$("#scoreline").innerHTML=scoreText();
+}
+function renderGap(S){
+  S.innerHTML=`<p class="lead">Read each sentence and write one word in each gap. One letter per cell. Some letters are given. Формат Свердловской области 2025.</p>
+  <div class="list">${GAP.map((g,i)=>`<div class="row"><div><span class="n">${i+1}</span>${esc(g.s)}</div><div class="cells" data-g="${i}">${[...g.w].map((ch,j)=>g.h.includes(j)?`<input class="cell given" value="${ch}" disabled aria-label="буква ${j+1}">`:`<input class="cell" id="g${i}_${j}" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Слово ${i+1}, буква ${j+1}">`).join("")}</div><div class="note" id="gn${i}"></div></div>`).join("")}</div>
+  <div class="actions"><button class="btn" id="gcheck">Проверить</button><button class="ghost" id="gshow">Показать ответы</button><span class="result" id="gres"></span></div>`;
+  if(window._gvals)Object.entries(window._gvals).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.value=v;});
+  if(st.gap!==null)checkGap();
+}
+function checkGap(){
+  let ok=0;window._gvals={};
+  GAP.forEach((g,i)=>{let good=true;[...g.w].forEach((ch,j)=>{if(g.h.includes(j))return;const el=$(`#g${i}_${j}`);window._gvals[el.id]=el.value;const r=el.value.toUpperCase()===ch;el.classList.remove("right","wrong");el.classList.add(r?"right":"wrong");if(!r)good=false;});
+    const n=$("#gn"+i);n.className="note "+(good?"ok":"bad");n.textContent=good?"Верно":"Ответ: "+g.w;if(good)ok++;});
+  st.gap=ok;$("#gres").textContent=`${ok} из ${GAP.length}`;$("#scoreline").innerHTML=scoreText();
+}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button,[data-tab]");if(!t)return;
+  if(t.dataset.view){document.querySelectorAll(".tab").forEach(b=>b.setAttribute("aria-selected",b===t));["quiz","writing","real"].forEach(v=>$("#v-"+v).hidden=v!==t.dataset.view);window.scrollTo({top:0});return;}
+  if(t.dataset.mode){mode=t.dataset.mode;idx=0;render();return;}
+  if(t.dataset.cat){cat=t.dataset.cat;idx=0;render();return;}
+  if(t.dataset.opt!==undefined){const q=mcList()[idx];st.mc[q.i]=+t.dataset.opt;render();return;}
+  if(t.dataset.step){idx+=+t.dataset.step;render();return;}
+  if(t.dataset.jump!==undefined){idx=+t.dataset.jump;render();return;}
+  if(t.dataset.tf!==undefined){st.tf[t.dataset.tf]=t.dataset.v==="true";render();return;}
+  if(t.id==="mcheck"){checkMatch();return;}
+  if(t.id==="gcheck"){checkGap();return;}
+  if(t.id==="gshow"){GAP.forEach((g,i)=>[...g.w].forEach((ch,j)=>{const el=$(`#g${i}_${j}`);if(el)el.value=ch;}));checkGap();return;}
+  if(t.id==="reset"){if(mode==="mc"){mcList().forEach(q=>delete st.mc[q.i]);idx=0;}if(mode==="tf")st.tf={};if(mode==="match"){st.match=null;window._mvals=null;}if(mode==="gap"){st.gap=null;window._gvals=null;}render();return;}
+  if(t.dataset.sk){sk=t.dataset.sk;renderSkel();return;}
+});
+document.addEventListener("input",e=>{const el=e.target;if(!el.classList.contains("cell"))return;el.value=el.value.replace(/[^a-z]/gi,"").slice(-1).toUpperCase();if(el.value){let nx=el.nextElementSibling;while(nx&&nx.disabled)nx=nx.nextElementSibling;if(nx)nx.focus();}});
+document.addEventListener("keydown",e=>{const el=e.target;if(!el.classList||!el.classList.contains("cell"))return;if(e.key==="Backspace"&&!el.value){let pv=el.previousElementSibling;while(pv&&pv.disabled)pv=pv.previousElementSibling;if(pv){pv.focus();pv.value="";e.preventDefault();}}});
+
+/* ---------- writing ---------- */
+const Y='<span class="yes">Да</span>',N='<span class="no">Нет</span>',O='<span class="opt-t">По желанию</span>';
+const WT=[
+ ["Story (рассказ)","Свердл., Камчатка, Мособл., Курск, Калуга, Башкирия",Y+"<br>связан с сюжетом, без точки",N,"Нейтральный, живой","4–5","Заданное начало и/или конец слово в слово; обязательные слова (подчеркнуть); прямая речь; чувства","Изменили данное предложение; нет диалога; всё в Present"],
+ ["Email / letter (письмо другу, совет)","СПб, Иркутск",N+"<br>Subject уже дан",Y+"<br>Hi Alex, … Best wishes, Name","Неформальный","4","Ответы на все вопросы; благодарность в начале; финальная фраза","Не ответили на один вопрос; поставили заголовок; подпись в одной строке с прощанием"],
+ ["Article (статья, отзыв о книге)","Рязань (book review)",Y+"<br>яркий, интригующий",N,"Полуформальный, обращение к читателю","4","Вопрос к читателю во вступлении; мнение; рекомендация в конце","Начали с Dear readers и закончили подписью, как письмо"],
+ ["Blog post / comment","Калининград",O,"Обращение к автору поста, подпись не нужна","Неформальный","3–4","Ответить на вопросы автора; задать вопрос подписчикам в конце","Забыли вопрос подписчикам — это отдельный пункт критериев"],
+ ["Advertisement (объявление)","Амурская",Y+"<br>привлекательный, можно с !",N,"Неформальный, императивы, you","Короткие блоки","Что особенного; расписание; польза; призыв в конце","Написали сплошным текстом, нет расписания или призыва"],
+ ["Composition (сочинение)","Нижний Новгород",O,N,"Нейтральный","3 (по плану)","Строго по плану задания: вступление, основная часть, вывод","Пропустили пункт плана; нет вывода о чувствах"],
+ ["Picture description (описание картины)","Архангельск",N,N,"Нейтральный","4","Название и художник; люди и предметы; место и событие; чувства","Описали без Present Continuous; не назвали событие"]
+];
+const SK={
+ story:{t:"Story",b:[
+  ["Title","Lost in the Dark\nThe Box That Changed Everything","Коротко, связано с сюжетом. Слова с заглавной буквы, точки нет. Иногда заголовок входит в подсчёт слов."],
+  ["1. Начало","[ДАННОЕ ПРЕДЛОЖЕНИЕ — слово в слово]\nIt was a cold evening and I was at home with my friends Kate and Max.","Кто, где, когда. Сразу одно чувство: I felt a bit nervous."],
+  ["2. Завязка","We were watching a film when …\nAt first, nothing seemed unusual, but then …","Past Continuous для фона, Past Simple для действий."],
+  ["3. Кульминация","Suddenly, …  All of a sudden, …\n\"What was that?\" whispered Kate.\n\"Don't panic!\" I said. \"I've got an idea.\"","Прямая речь с кавычками и запятыми. Чувства: terrified, shocked, puzzled."],
+  ["4. Развязка","Finally, … It turned out that …\nI was so relieved!\n[ДАННОЕ ПОСЛЕДНЕЕ ПРЕДЛОЖЕНИЕ]","Past Perfect для причины: The cat had switched off the lamp."]
+ ],traps:["Изменили или перевели заданное предложение","Нет прямой речи, если её требуют","Не подчеркнули обязательные слова","Перепрыгивают между Past и Present"]},
+ email:{t:"Email",b:[
+  ["Приветствие","Hi Alex, / Dear Alex,","Запятая после имени. Абзац с новой строки."],
+  ["1. Начало","Thanks for your email. It was great to hear from you!\nWhat a cool idea to make a Time Capsule!","Благодарность плюс реакция на новость. Здесь же причина письма."],
+  ["2–3. Ответы","If I were you, I'd put … in the capsule because …\nAnother idea is to … That's why …\nWhy don't you …? You could also …","Каждый вопрос из письма — отдельный ответ. Фразы совета: should, could, Why don't you…"],
+  ["4. Конец","I hope my advice helps. Good luck with the project!\nWrite back soon.","Позитивная финальная фраза."],
+  ["Подпись","Best wishes,\nIvan","Прощание с запятой, имя на отдельной строке, без точки."]
+ ],traps:["Заголовок у письма не нужен","Ответили не на все вопросы","Формальные фразы в письме другу: I am writing to inform you"]},
+ article:{t:"Article",b:[
+  ["Title","A Book You Can't Put Down\nWhy Everyone Should Read 'Treasure Island'","Заголовок обязателен и должен цеплять."],
+  ["1. Вступление","Have you ever read a book in one night? I have!\nThe last book I read was 'Treasure Island' by Robert Louis Stevenson.","Вопрос к читателю. Для отзыва — название и автор."],
+  ["2. Содержание","The story is about a boy called Jim who …\nThe most exciting part is when …","Главные события, без пересказа всей книги и без концовки."],
+  ["3. Мнение","What I liked most was … / The characters are so …\nHowever, some parts were a bit …","Своё мнение с аргументами, можно минус."],
+  ["4. Вывод","All in all, I'd highly recommend this book to anyone who loves adventures.\nWhy not give it a try?","Рекомендация или призыв к читателю."]
+ ],traps:["Нет заголовка","Оформили как письмо: Dear readers… Yours, Ivan","Ответили не на все вопросы из объявления"]},
+ blog:{t:"Blog post",b:[
+  ["Обращение","Hi Noah! / Hey everyone!","Можно обратиться к автору поста или ко всем."],
+  ["1. Реакция","I totally understand how you feel — exams make me nervous too!","Поддержка, связь с постом."],
+  ["2–3. Ответы","Before exams I usually … It really helps me because …\nAnother thing I do is …","Ответы на каждый вопрос автора поста."],
+  ["4. Вопрос подписчикам","Good luck, Noah! You'll do great!\nWhat about you, guys? How do you stay calm? Share in the comments!","Обязательный пункт: вопрос подписчикам, чтобы поддержать интерес."]
+ ],traps:["Нет вопроса подписчикам","Слишком официально","Подпись Yours sincerely"]},
+ ad:{t:"Advertisement",b:[
+  ["Title","Love Books? Join Our English Book Club!","Крупно, можно с вопросом или восклицательным знаком."],
+  ["Что это","Are you a bookworm? Do you want to improve your English?\nOur club is the perfect place for you!","Вопросы к аудитории, you."],
+  ["Что особенного","We read exciting stories, watch films based on books and play word games.","Что отличает клуб от урока."],
+  ["Расписание","When: every Tuesday, 3.30–4.30 pm\nWhere: Room 12","Можно коротким списком. Это отдельный пункт критериев."],
+  ["Польза и призыв","You will learn new words, make friends and become a better speaker.\nDon't miss it — come and join us!","Императивы в конце: Join us! Sign up today!"]
+ ],traps:["Нет расписания","Нет финального призыва","Сплошной текст без структуры"]},
+ comp:{t:"Composition",b:[
+  ["Title","My Visit to the Theatre","Если не запрещено, лучше поставить."],
+  ["1. Вступление","Last month my family and I went to the … Theatre to see …","Место, время, с кем. Строго по плану задания."],
+  ["2. Основная часть","Before the visit, I … During the performance, … After the show, we …","Каждый пункт плана — отдельное предложение или абзац."],
+  ["3. Вывод","I really enjoyed it because … It was an unforgettable evening.","Чувства и впечатления."]
+ ],traps:["Пропущен пункт плана","Нет вывода"]},
+ pic:{t:"Picture",b:[
+  ["1. Вступление","The picture I'm going to describe is called '…' by …","Название и художник."],
+  ["2. Люди и предметы","In the foreground there is … / In the background I can see …\nAn old man is standing … He is wearing …","Present Continuous для действий, there is / there are."],
+  ["3. Место и событие","The scene takes place in … It is connected with …","Где и какое историческое событие."],
+  ["4. Чувства","The picture makes me feel … because …","Свои эмоции с объяснением."]
+ ],traps:["Описание без глаголов действия","Не названо событие","Нет чувств"]}
+};
+let sk="story";
+function renderSkel(){
+  $("#sktabs").innerHTML=Object.entries(SK).map(([k,v])=>`<button class="chip" data-sk="${k}" aria-pressed="${k===sk}">${v.t}</button>`).join("");
+  const s=SK[sk];
+  $("#skel").innerHTML=`<h3>${s.t}</h3>${s.b.map(([l,t,h])=>`<div class="block"><div class="lbl">${esc(l)}</div><div><div class="tmpl">${esc(t)}</div><div class="hint">${esc(h)}</div></div></div>`).join("")}<div class="traps"><b>Где теряют баллы</b><ul>${s.traps.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+}
+$("#wtable").innerHTML=`<thead><tr><th>Тип</th><th>Где было в 2025</th><th>Заголовок</th><th>Обращение и подпись</th><th>Стиль</th><th>Абзацы</th><th>Обязательно</th><th>Частые ошибки</th></tr></thead><tbody>${WT.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`).join("")}</tbody>`;
+const RT=[
+ ["Санкт-Петербург","Отдельный блок: книга → автор (10)","Письмо-совет другу (email)","100–150"],
+ ["Свердловская обл.","Отдельный блок: впиши слово по буквам (9)","Рассказ: начало и конец даны, заголовок, 2 реплики прямой речи","120"],
+ ["Камчатский край","Отдельный блок: True / False (10)","Рассказ: начало и конец, 3 обязательных слова, диалог","100–150"],
+ ["Московская обл.","В чтении: текст о Большом театре","Научно-фантастический рассказ, 2 идиомы, заголовок","120–200"],
+ ["Рязанская обл.","В чтении: советы туристам в Британии","Article: отзыв о прочитанной книге","100–120"],
+ ["Курская обл.","В чтении и аудировании: Темза, «Трое в лодке», Geordies","Рассказ, 3 обязательных слова","100–140"],
+ ["Нижегородская обл.","В чтении: биография Гордона Брауна","Сочинение о походе в театр по плану","100–140"],
+ ["Калининградская обл.","—","Пост в блоге с вопросом подписчикам","100–140"],
+ ["Архангельская обл.","—","Описание картины","90–120"],
+ ["Амурская обл.","—","Объявление об English Book Club","100–140"],
+ ["Иркутская обл.","—","Email по рекламе","140–160"],
+ ["Калужская обл.","—","Рассказ с заданным началом","120–150"],
+ ["Башкортостан","—","Рассказ о любимом учителе, 5 слов","80–100"]
+];
+$("#rtable").innerHTML=`<thead><tr><th>Регион</th><th>Страноведение</th><th>Письмо</th><th>Слов</th></tr></thead><tbody>${RT.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+renderSkel();render();
+</script>
+
+</body></html>
