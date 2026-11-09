@@ -1,0 +1,382 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Bird, Cage, Beach Ball</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+/* Layout: one column workbook, tab bar on top, picture panels echo the coursebook's two worlds (garden cage / beach) */
+:root{
+  --bg:#F2F5F1; --surface:#FFFFFF; --ink:#1F2A30; --muted:#5D6B70; --line:#D9E0DA;
+  --accent:#D9573A; --accent-ink:#FFFFFF;
+  --good:#2E8B57; --good-bg:#E3F3E9; --bad:#C0392B; --bad-bg:#FBE6E3;
+  --garden:#E4ECD9; --cage:#4B575D; --bird:#D8D545; --bird2:#5FA347; --beak:#E8893A;
+  --sky:#D3E8F1; --sea:#9DCBE0; --sand:#EFD9A8; --umb:#5F92BF; --umb2:#2F6593; --ball1:#8FAE5E; --ball2:#D8664E; --ball3:#E2DB55; --white:#FFFFFF;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Nunito Sans",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141A1C; --surface:#1D2528; --ink:#E8EEEC; --muted:#9AA8AB; --line:#2E3A3D;
+  --accent:#F0795A; --accent-ink:#1A1010;
+  --good:#6FD39A; --good-bg:#183326; --bad:#F2877A; --bad-bg:#3A1F1C;
+  --garden:#2A3524; --cage:#C9D3D6; --bird:#E4E161; --bird2:#7DC461; --beak:#F09A50;
+  --sky:#22394A; --sea:#2F6380; --sand:#5E5038; --umb:#7FB0DA; --umb2:#B9D6EF; --ball1:#9DC06A; --ball2:#E37A62; --ball3:#E9E070; --white:#F2F2EE;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141A1C; --surface:#1D2528; --ink:#E8EEEC; --muted:#9AA8AB; --line:#2E3A3D;
+  --accent:#F0795A; --accent-ink:#1A1010;
+  --good:#6FD39A; --good-bg:#183326; --bad:#F2877A; --bad-bg:#3A1F1C;
+  --garden:#2A3524; --cage:#C9D3D6; --bird:#E4E161; --bird2:#7DC461; --beak:#F09A50;
+  --sky:#22394A; --sea:#2F6380; --sand:#5E5038; --umb:#7FB0DA; --umb2:#B9D6EF; --ball1:#9DC06A; --ball2:#E37A62; --ball3:#E9E070; --white:#F2F2EE;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-block:24px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--accent)}
+h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0;text-wrap:balance}
+.lead{color:var(--muted);margin:0;max-width:62ch}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 22px;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:14px;width:fit-content;max-width:100%}
+nav button{font:inherit;font-weight:700;font-size:15px;border:0;background:transparent;color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer}
+nav button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel-head{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.panel-head p{margin:0;color:var(--muted)}
+.btn{font:inherit;font-weight:700;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.scene{display:block;width:100%;height:auto;border-radius:10px}
+/* review grid */
+.setlabel{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);margin:18px 0 10px;letter-spacing:.02em}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{font:inherit;color:inherit;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.card .cap{min-height:46px;padding:0 4px 2px;display:flex;flex-direction:column;justify-content:center}
+.card .en{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.1}
+.card .ru{color:var(--muted);font-size:14px}
+.card .q{color:var(--muted);font-size:14px}
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:720px){.quiz{grid-template-columns:1fr}}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{font:inherit;font-family:var(--display);font-weight:600;font-size:19px;padding:14px 10px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt.ok{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.opt.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.meter{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.stat{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+.feedback{min-height:26px;font-weight:700}
+.feedback.ok{color:var(--good)} .feedback.no{color:var(--bad)}
+/* sentences */
+.sents{display:flex;flex-direction:column;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:6px 16px;margin-bottom:14px}
+.sent{display:flex;gap:10px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line);line-height:2}
+.sent:last-child{border-bottom:0}
+.sent .n{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;min-width:22px}
+.sent select{font:inherit;font-weight:700;color:var(--ink);background:var(--bg);border:1.5px dashed var(--muted);border-radius:8px;padding:2px 6px;max-width:100%}
+.sent select.ok{border:1.5px solid var(--good);background:var(--good-bg);color:var(--good)}
+.sent select.no{border:1.5px solid var(--bad);background:var(--bad-bg);color:var(--bad)}
+.sent .fix{color:var(--good);font-weight:700;font-size:14px}
+/* sort */
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:12px;background:var(--surface);border:1px dashed var(--muted);border-radius:14px;margin-bottom:14px}
+.chip{font:inherit;font-weight:700;padding:7px 13px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip.sel{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.chip.ok{border-color:var(--good);color:var(--good);background:var(--good-bg)}
+.chip.no{border-color:var(--bad);color:var(--bad);background:var(--bad-bg)}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+@media (max-width:560px){.bins{grid-template-columns:1fr}}
+.bin{font:inherit;color:inherit;text-align:left;background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px;cursor:pointer;min-height:150px;display:flex;flex-direction:column;gap:10px}
+.bin.target{border-color:var(--accent)}
+.bin h3{margin:0;font-family:var(--display);font-weight:600;font-size:18px}
+.bin small{color:var(--muted);font-weight:400}
+.bin .chips{display:flex;flex-wrap:wrap;gap:8px}
+.note{color:var(--muted);font-size:14px;margin:6px 0 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Vocabulary · Prepositions of place &amp; movement</span>
+    <h1>Where's the bird? <em>Where's the ball?</em></h1>
+    <p class="lead">Review 16 words and phrases, then practise them in three tasks.</p>
+  </header>
+
+  <nav role="tablist" aria-label="Sections">
+    <button role="tab" data-tab="review" aria-selected="true">Review</button>
+    <button role="tab" data-tab="quiz" aria-selected="false">1 · Picture quiz</button>
+    <button role="tab" data-tab="sent" aria-selected="false">2 · Sentences</button>
+    <button role="tab" data-tab="sort" aria-selected="false">3 · Place or movement?</button>
+  </nav>
+
+  <!-- REVIEW -->
+  <section id="review" role="tabpanel">
+    <div class="panel-head">
+      <h2>Look and say</h2>
+      <p>Look at a picture and say the word. Then tap the card to check. Work in pairs: one person points, the other says the word.</p>
+    </div>
+    <div class="row">
+      <button class="btn" id="showAll">Show all words</button>
+      <button class="btn" id="hideAll">Hide all words</button>
+      <button class="btn" id="shuffleRev">Shuffle</button>
+    </div>
+    <div class="setlabel">The bird and the cage</div>
+    <div class="grid" id="grid1"></div>
+    <div class="setlabel">The ball and the umbrella</div>
+    <div class="grid" id="grid2"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Picture quiz</h2>
+      <p>Choose the word or phrase for each picture.</p>
+    </div>
+    <div class="quiz">
+      <div class="qbox" id="qScene"></div>
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <div class="row" style="justify-content:space-between"><span class="stat" id="qNum">1 / 16</span><span class="stat" id="qScore">Score 0</span></div>
+        <div class="meter"><i id="qBar"></i></div>
+        <div class="opts" id="qOpts"></div>
+        <div class="feedback" id="qFb" aria-live="polite"></div>
+        <div class="row"><button class="btn primary" id="qNext" disabled>Next</button><button class="btn" id="qRestart">Start again</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SENTENCES -->
+  <section id="sent" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Complete the sentences</h2>
+      <p>Choose the correct word or phrase. Use each one once.</p>
+    </div>
+    <div class="setlabel" style="margin-top:0">Part A: above, around, inside, into, onto, out of, outside, over</div>
+    <div class="sents" id="sentsA"></div>
+    <div class="setlabel">Part B: away from, beside, forwards, inside out, together, towards, up and down, upside down</div>
+    <div class="sents" id="sentsB"></div>
+    <div class="row"><button class="btn primary" id="sCheck">Check</button><button class="btn" id="sShow">Show answers</button><button class="btn" id="sReset">Clear</button><span class="stat" id="sScore"></span></div>
+  </section>
+
+  <!-- SORT -->
+  <section id="sort" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Place or movement?</h2>
+      <p>Tap a word, then tap a box. Does the word say <b>where something is</b>, or <b>where something goes</b>?</p>
+    </div>
+    <div class="pool" id="pool"></div>
+    <div class="bins">
+      <button class="bin" data-bin="place"><h3>Where it is <small>(place / position)</small></h3><div class="chips" id="bin-place"></div></button>
+      <button class="bin" data-bin="move"><h3>Where it goes <small>(movement / direction)</small></h3><div class="chips" id="bin-move"></div></button>
+    </div>
+    <div class="row"><button class="btn primary" id="oCheck">Check</button><button class="btn" id="oReset">Start again</button><span class="stat" id="oScore"></span></div>
+    <p class="note">Tip: look at the pictures in Review. Is there an arrow? Then it's usually movement.</p>
+  </section>
+</div>
+
+<script>
+/* ---------- data ---------- */
+const WORDS = [
+  {w:"above", ru:"над (выше)", set:1, type:"place"},
+  {w:"around", ru:"вокруг", set:1, type:"move"},
+  {w:"inside", ru:"внутри", set:1, type:"place"},
+  {w:"into", ru:"в, внутрь (куда?)", set:1, type:"move"},
+  {w:"onto", ru:"на (куда?)", set:1, type:"move"},
+  {w:"out of", ru:"из, наружу", set:1, type:"move"},
+  {w:"outside", ru:"снаружи, вне", set:1, type:"place"},
+  {w:"over", ru:"над, через (перелететь)", set:1, type:"move"},
+  {w:"away from", ru:"прочь от", set:2, type:"move"},
+  {w:"beside", ru:"рядом с", set:2, type:"place"},
+  {w:"forwards", ru:"вперёд", set:2, type:"move"},
+  {w:"inside out", ru:"наизнанку", set:2, type:"place"},
+  {w:"together", ru:"вместе", set:2, type:"place"},
+  {w:"towards", ru:"по направлению к", set:2, type:"move"},
+  {w:"up and down", ru:"вверх и вниз", set:2, type:"move"},
+  {w:"upside down", ru:"вверх ногами", set:2, type:"place"},
+];
+const SENTS_A = [
+  ["The cat jumped","onto","the table and ate my sandwich."],
+  ["There's a clock","above","the door in our classroom."],
+  ["Please put the milk back","into","the fridge."],
+  ["He took his phone","out of","his pocket and called his mum."],
+  ["It's raining, so the children are playing","inside","today."],
+  ["My dog waits","outside","the shop when I buy bread."],
+  ["We walked","around","the lake. It took an hour."],
+  ["The plane flew","over","the mountains."],
+];
+const SENTS_B = [
+  ["Your jumper is","inside out","! I can see the label."],
+  ["That picture is","upside down",". Turn it round!"],
+  ["The kids were jumping","up and down","on the bed."],
+  ["Move","away from","the fire. It's hot!"],
+  ["The dog ran","towards","me and wagged its tail."],
+  ["Take two steps","forwards","and stop."],
+  ["Let's do our homework","together","after school."],
+  ["Come and sit","beside","me on the sofa."],
+];
+
+/* ---------- drawing ---------- */
+let uid=0;
+const svgOpen=(bg,id)=>`<svg class="scene" viewBox="0 0 200 140" role="img" aria-label="picture"><defs><marker id="m${id}" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/></marker></defs>${bg}`;
+const gardenBg=`<rect width="200" height="140" fill="var(--garden)"/>`;
+const beachBg=`<rect width="200" height="140" fill="var(--sky)"/><rect y="70" width="200" height="10" fill="var(--sea)"/><rect y="80" width="200" height="60" fill="var(--sand)"/>`;
+const arrow=(d,id,both)=>`<path d="${d}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" marker-end="url(#m${id})"${both?` marker-start="url(#m${id})"`:''}/>`;
+const dotted=(d)=>`<path d="${d}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 4" stroke-linecap="round"/>`;
+
+function cage(cx,base,door){
+  const w=64,h=74,rx=w/2,y0=base-h*0.55,ry=h*0.45;
+  let s=`<g stroke="var(--cage)" stroke-width="2.2" fill="none" stroke-linecap="round">`;
+  s+=`<path d="M${cx-rx} ${base} V${y0} A${rx} ${ry} 0 0 1 ${cx+rx} ${y0} V${base}"/>`;
+  for(let i=1;i<6;i++){const dx=-rx+i*w/6;const top=y0-ry*Math.sqrt(1-(dx/rx)**2);s+=`<line x1="${cx+dx}" y1="${top.toFixed(1)}" x2="${cx+dx}" y2="${base}"/>`;}
+  s+=`<line x1="${cx-rx}" y1="${y0}" x2="${cx+rx}" y2="${y0}"/><line x1="${cx-rx}" y1="${base-10}" x2="${cx+rx}" y2="${base-10}"/>`;
+  s+=`<circle cx="${cx}" cy="${base-h-4}" r="3.5"/>`;
+  if(door){s+=`<path d="M${cx+rx} ${base-34} H${cx+rx+20} V${base-3} H${cx+rx}"/><line x1="${cx+rx+7}" y1="${base-34}" x2="${cx+rx+7}" y2="${base-3}"/><line x1="${cx+rx+14}" y1="${base-34}" x2="${cx+rx+14}" y2="${base-3}"/>`;}
+  s+=`</g><rect x="${cx-rx-5}" y="${base}" width="${w+10}" height="4.5" rx="1.5" fill="var(--cage)"/>`;
+  return s;
+}
+function bird(x,y,{flip=false,fly=false,s=1.25}={}){
+  const wing=fly?`<polygon points="-3,-3 -9,-19 5,-4" fill="var(--bird2)"/>`:`<ellipse cx="-2" cy="0.5" rx="7" ry="3.5" fill="var(--bird2)"/>`;
+  const legs=fly?'':`<g stroke="var(--beak)" stroke-width="1.3"><line x1="-1" y1="6" x2="-2" y2="10"/><line x1="3" y1="6" x2="3" y2="10"/></g>`;
+  return `<g transform="translate(${x} ${y}) scale(${flip?-s:s} ${s})">${legs}<polygon points="-9,0 -21,5 -20,-1" fill="var(--bird2)"/><ellipse cx="0" cy="0" rx="11" ry="6.5" fill="var(--bird)"/><circle cx="9" cy="-4" r="5.5" fill="var(--bird2)"/><polygon points="13.5,-5.5 18.5,-3 13.5,-1.5" fill="var(--beak)"/><circle cx="10.5" cy="-5.5" r="1.1" fill="#1F2A30"/>${wing}</g>`;
+}
+function canopy(){ // rim centred at 0,0, dome up to -26
+  return `<path d="M-42 0 Q0 -40 42 0 Q31.5 -6 21 0 Q10.5 -6 0 0 Q-10.5 -6 -21 0 Q-31.5 -6 -42 0 Z" fill="var(--umb)"/><path d="M0 -20 Q-9 -10 -12 -1.5 Q-6 -5 0 0 Q6 -5 12 -1.5 Q9 -10 0 -20 Z" fill="var(--white)"/><path d="M-42 0 Q-34 -16 -20 -18 Q-28 -10 -31.5 -3 Z" fill="var(--umb2)"/><path d="M42 0 Q34 -16 20 -18 Q28 -10 31.5 -3 Z" fill="var(--umb2)"/>`;
+}
+function pole(len=70){return `<path d="M0 -20 V${len} q0 8 -6 8 q-6 0 -6 -6" fill="none" stroke="var(--cage)" stroke-width="2.6" stroke-linecap="round"/>`;}
+function umbrella(x,y,{rot=0,s=1,inside=false}={}){
+  const c=inside?`<g transform="scale(1 -1)">${canopy()}</g>`:canopy();
+  return `<g transform="translate(${x} ${y}) rotate(${rot}) scale(${s})">${pole(inside?62:70)}${c}</g>`;
+}
+function ball(x,y,r=14){
+  return `<g transform="translate(${x} ${y}) scale(${r/14})"><ellipse cx="2" cy="15" rx="12" ry="2.5" fill="#000" opacity=".12"/><circle r="14" fill="var(--white)"/><path d="M0 -14 Q-16 0 -3 14 Q-7 0 0 -14Z" fill="var(--ball1)"/><path d="M0 -14 Q16 -4 12 8 Q8 -4 0 -14Z" fill="var(--ball2)"/><path d="M-3 14 Q6 6 12 8 Q8 14 -3 14Z" fill="var(--ball3)"/><circle r="14" fill="none" stroke="var(--cage)" stroke-width="1" opacity=".5"/></g>`;
+}
+const ghost=(x,y,r=14)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="3 3"/>`;
+
+const SCENES={
+  "onto":id=>gardenBg+cage(100,122)+bird(102,32,{})+arrow("M168 14 Q132 2 114 22",id),
+  "above":id=>gardenBg+cage(100,122)+bird(100,22,{fly:true}),
+  "inside":id=>gardenBg+cage(100,122)+bird(98,98,{}),
+  "into":id=>gardenBg+cage(90,122,true)+bird(98,98,{flip:true})+arrow("M178 100 H138",id),
+  "out of":id=>gardenBg+cage(80,122,true)+arrow("M96 96 H140",id)+bird(166,100,{}),
+  "outside":id=>gardenBg+cage(58,122)+`<g stroke="var(--cage)" stroke-width="2" fill="none"><rect x="120" y="20" width="66" height="96" rx="2"/><line x1="153" y1="20" x2="153" y2="116"/><line x1="120" y1="68" x2="186" y2="68"/></g>`+bird(152,52,{fly:true}),
+  "over":id=>gardenBg+cage(95,122)+arrow("M26 92 Q90 -22 156 52",id)+bird(174,62,{fly:true}),
+  "around":id=>gardenBg+cage(100,122)+arrow("M50 92 A52 20 0 0 1 152 92 A52 20 0 0 1 72 108",id)+bird(36,94,{fly:true,flip:true}),
+  "upside down":id=>beachBg+umbrella(100,104,{rot:180}),
+  "up and down":id=>beachBg+ghost(100,90)+ghost(100,116)+ball(100,58)+arrow("M66 50 V118",id,true),
+  "beside":id=>beachBg+umbrella(122,48)+ball(80,112),
+  "away from":id=>beachBg+umbrella(150,48)+ghost(110,110)+ghost(84,110)+ball(48,110)+arrow("M80 88 H30",id),
+  "towards":id=>beachBg+umbrella(152,48)+ghost(36,110)+ghost(62,110)+ball(106,110)+arrow("M70 88 H112",id),
+  "forwards":id=>beachBg+umbrella(100,62,{s:.28})+ghost(100,80,6)+ghost(100,90,10)+ball(100,112,24)+arrow("M156 72 L156 124",id),
+  "inside out":id=>beachBg+`<g stroke="var(--muted)" stroke-width="2" stroke-linecap="round" fill="none"><path d="M18 30 H52"/><path d="M10 44 H44"/><path d="M24 58 H56"/></g>`+umbrella(110,64,{rot:-28,inside:true}),
+  "together":id=>beachBg+umbrella(104,96,{rot:160})+ball(102,104,15),
+};
+const draw=w=>{const id=++uid;return svgOpen('',id).replace('<svg','<svg')+SCENES[w](id)+'</svg>';};
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  document.querySelectorAll('[role=tabpanel]').forEach(p=>p.hidden=p.id!==b.dataset.tab);
+}));
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+
+/* ---------- review ---------- */
+function renderReview(order){
+  [1,2].forEach(set=>{
+    const g=document.getElementById('grid'+set);g.innerHTML='';
+    (order?shuffle(WORDS):WORDS).filter(x=>x.set===set).forEach(x=>{
+      const c=document.createElement('button');c.className='card';c.setAttribute('aria-pressed','false');
+      c.innerHTML=draw(x.w)+`<div class="cap"><span class="q">Tap to check</span><span class="en" hidden>${x.w}</span><span class="ru" hidden>${x.ru}</span></div>`;
+      c.addEventListener('click',()=>setCard(c,c.getAttribute('aria-pressed')!=='true'));
+      g.appendChild(c);
+    });
+  });
+}
+function setCard(c,on){c.setAttribute('aria-pressed',on);c.querySelector('.q').hidden=on;c.querySelector('.en').hidden=!on;c.querySelector('.ru').hidden=!on;}
+document.getElementById('showAll').onclick=()=>document.querySelectorAll('.card').forEach(c=>setCard(c,true));
+document.getElementById('hideAll').onclick=()=>document.querySelectorAll('.card').forEach(c=>setCard(c,false));
+document.getElementById('shuffleRev').onclick=()=>renderReview(true);
+renderReview(false);
+
+/* ---------- quiz ---------- */
+let Q=[],qi=0,score=0;
+function startQuiz(){Q=shuffle(WORDS);qi=0;score=0;showQ();}
+function showQ(){
+  const fb=document.getElementById('qFb');fb.textContent='';fb.className='feedback';
+  const next=document.getElementById('qNext');next.disabled=true;
+  document.getElementById('qScore').textContent='Score '+score;
+  if(qi>=Q.length){
+    document.getElementById('qScene').innerHTML=`<div style="padding:40px 20px;text-align:center"><div style="font-family:var(--display);font-weight:800;font-size:44px">${score} / ${Q.length}</div><p class="lead" style="margin:8px auto 0">${score===16?'Perfect! Well done.':score>=12?'Great work! Try again for 16.':'Good try. Look at Review and try again.'}</p></div>`;
+    document.getElementById('qOpts').innerHTML='';document.getElementById('qNum').textContent='Finished';
+    document.getElementById('qBar').style.width='100%';return;
+  }
+  const cur=Q[qi];
+  document.getElementById('qNum').textContent=(qi+1)+' / '+Q.length;
+  document.getElementById('qBar').style.width=(qi/Q.length*100)+'%';
+  document.getElementById('qScene').innerHTML=draw(cur.w);
+  const others=shuffle(WORDS.filter(x=>x.set===cur.set&&x.w!==cur.w)).slice(0,3);
+  const o=document.getElementById('qOpts');o.innerHTML='';
+  shuffle([cur,...others]).forEach(x=>{
+    const b=document.createElement('button');b.className='opt';b.textContent=x.w;
+    b.onclick=()=>{
+      o.querySelectorAll('.opt').forEach(z=>{z.disabled=true;if(z.textContent===cur.w)z.classList.add('ok');});
+      if(x.w===cur.w){score++;fb.textContent='Correct!';fb.className='feedback ok';}
+      else{b.classList.add('no');fb.textContent='Not quite. It\'s "'+cur.w+'".';fb.className='feedback no';}
+      document.getElementById('qScore').textContent='Score '+score;next.disabled=false;next.focus();
+    };
+    o.appendChild(b);
+  });
+}
+document.getElementById('qNext').onclick=()=>{qi++;showQ();};
+document.getElementById('qRestart').onclick=startQuiz;
+startQuiz();
+
+/* ---------- sentences ---------- */
+function buildSents(el,list,offset){
+  const opts=shuffle(list.map(s=>s[1]));
+  list.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='sent';
+    const sid='s'+(offset+i);
+    d.innerHTML=`<span class="n">${offset+i+1}</span><span>${s[0]} <select id="${sid}" data-a="${s[1]}" aria-label="gap ${offset+i+1}"><option value="">______</option>${opts.map(o=>`<option>${o}</option>`).join('')}</select>${/^[!.,]/.test(s[2])?'':' '}${s[2]} <span class="fix" hidden></span></span>`;
+    el.appendChild(d);
+  });
+}
+buildSents(document.getElementById('sentsA'),SENTS_A,0);
+buildSents(document.getElementById('sentsB'),SENTS_B,8);
+const sels=()=>[...document.querySelectorAll('.sent select')];
+document.getElementById('sCheck').onclick=()=>{
+  let n=0;sels().forEach(s=>{const ok=s.value===s.dataset.a;s.classList.toggle('ok',ok);s.classList.toggle('no',!ok&&s.value!=='');if(ok)n++;});
+  document.getElementById('sScore').textContent=n+' / 16 correct';
+};
+document.getElementById('sShow').onclick=()=>sels().forEach(s=>{const f=s.parentElement.querySelector('.fix');if(s.value!==s.dataset.a){f.textContent='→ '+s.dataset.a;f.hidden=false;}});
+document.getElementById('sReset').onclick=()=>{sels().forEach(s=>{s.value='';s.className='';s.parentElement.querySelector('.fix').hidden=true;});document.getElementById('sScore').textContent='';};
+sels().forEach(s=>s.addEventListener('change',()=>{s.className='';s.parentElement.querySelector('.fix').hidden=true;}));
+
+/* ---------- sort ---------- */
+let selChip=null;
+function startSort(){
+  const pool=document.getElementById('pool');pool.innerHTML='';
+  document.getElementById('bin-place').innerHTML='';document.getElementById('bin-move').innerHTML='';
+  document.getElementById('oScore').textContent='';selChip=null;
+  shuffle(WORDS).forEach(x=>{
+    const c=document.createElement('button');c.className='chip';c.textContent=x.w;c.dataset.type=x.type;
+    c.onclick=e=>{e.stopPropagation();document.querySelectorAll('.chip').forEach(z=>z.classList.remove('sel','ok','no'));
+      if(selChip===c){selChip=null;}else{selChip=c;c.classList.add('sel');}
+      document.querySelectorAll('.bin').forEach(b=>b.classList.toggle('target',!!selChip));};
+    pool.appendChild(c);
+  });
+}
+document.querySelectorAll('.bin').forEach(b=>b.addEventListener('click',()=>{
+  if(!selChip)return;document.getElementById('bin-'+b.dataset.bin).appendChild(selChip);
+  selChip.classList.remove('sel');selChip=null;document.querySelectorAll('.bin').forEach(x=>x.classList.remove('target'));
+}));
+document.getElementById('pool').addEventListener('click',()=>{if(selChip){document.getElementById('pool').appendChild(selChip);selChip.classList.remove('sel');selChip=null;document.querySelectorAll('.bin').forEach(x=>x.classList.remove('target'));}});
+document.getElementById('oCheck').onclick=()=>{
+  let n=0;['place','move'].forEach(t=>document.querySelectorAll('#bin-'+t+' .chip').forEach(c=>{const ok=c.dataset.type===t;c.classList.add(ok?'ok':'no');if(ok)n++;}));
+  const left=document.querySelectorAll('#pool .chip').length;
+  document.getElementById('oScore').textContent=n+' / 16 correct'+(left?` · ${left} left`:'');
+};
+document.getElementById('oReset').onclick=startSort;
+startSort();
+</script>
+
+</body></html>
