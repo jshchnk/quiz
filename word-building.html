@@ -1,0 +1,288 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Word Building: Nouns</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Rubik:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+/* Layout: header + three tabs. Cards = one big flip card with know / still learning buttons.
+   Warm-up = one typing card at a time. OGE = exam-style text with the CAPS word in a right-hand column. */
+:root{
+  --bg:#f1f6f6; --surface:#ffffff; --ink:#132a2a; --muted:#587070; --line:#d3e1e1;
+  --accent:#0e7c7b; --accent-ink:#ffffff; --hot:#ff8a3d; --hot-ink:#2b1300; --soft:#e5f2f1;
+  --good:#1d8a52; --good-bg:#e0f4e8; --bad:#c9443b; --bad-bg:#fbe6e3;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Rubik","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1a1a; --surface:#172525; --ink:#e5f1f0; --muted:#94b0ae; --line:#28403f;
+  --accent:#4fc7c3; --accent-ink:#082020; --hot:#ff9d5c; --hot-ink:#2b1300; --soft:#1e3332;
+  --good:#6fd39c; --good-bg:#16352a; --bad:#f2877e; --bad-bg:#3a1e1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a1a; --surface:#172525; --ink:#e5f1f0; --muted:#94b0ae; --line:#28403f;
+  --accent:#4fc7c3; --accent-ink:#082020; --hot:#ff9d5c; --hot-ink:#2b1300; --soft:#1e3332;
+  --good:#6fd39c; --good-bg:#16352a; --bad:#f2877e; --bad-bg:#3a1e1c; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:900px;margin:0 auto;padding-block:24px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:grid;gap:18px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,4.5vw,2.4rem);line-height:1.1;margin:0}
+h1 span{color:var(--accent)}
+.sub{margin:4px 0 0;color:var(--muted)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:2px solid var(--line)}
+.tab{font:500 1rem var(--body);padding:10px 16px;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;background:transparent;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:700}
+button:focus-visible,input:focus-visible{outline:3px solid var(--hot);outline-offset:2px}
+.btn{font:500 1rem var(--body);padding:10px 16px;border-radius:10px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.main{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.btn.know{background:var(--good-bg);border-color:var(--good);color:var(--good);font-weight:700}
+.btn.learn{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.muted{color:var(--muted)}
+.pill{font-size:.9rem;font-weight:500;background:var(--soft);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}
+
+/* flashcards */
+.deck{perspective:1200px}
+.flash{position:relative;width:100%;min-height:260px;cursor:pointer;transform-style:preserve-3d;transition:transform .45s;border:0;background:none;padding:0;font:inherit;color:inherit;display:block}
+.flash.flipped{transform:rotateY(180deg)}
+@media (prefers-reduced-motion: reduce){.flash{transition:none}}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--surface);border:2px solid var(--line);
+  border-radius:18px;display:grid;place-items:center;align-content:center;gap:10px;padding:24px;text-align:center;box-shadow:0 10px 24px -18px rgba(0,0,0,.4)}
+.face.back{transform:rotateY(180deg);background:var(--soft)}
+.big{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,5vw,2.6rem);line-height:1.15}
+.small{color:var(--muted)}
+.small b{color:var(--accent)}
+.hint{font-size:.85rem;color:var(--muted)}
+.bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--good);width:0;transition:width .3s}
+.seg{display:inline-flex;border:2px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{font:500 .92rem var(--body);padding:7px 12px;border:0;background:var(--surface);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.done{background:var(--surface);border:2px dashed var(--good);border-radius:18px;padding:28px;text-align:center;display:grid;gap:10px}
+
+/* warm-up */
+.drill{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:24px;display:grid;gap:14px;text-align:center}
+.drill .verb{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,5vw,2.3rem)}
+.drill input{font:500 1.3rem var(--body);text-align:center;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);width:min(100%,340px);justify-self:center}
+.drill input.ok{border-color:var(--good);background:var(--good-bg)}
+.drill input.no{border-color:var(--bad);background:var(--bad-bg)}
+.msg{min-height:1.5em;margin:0;font-weight:500}
+.msg.ok{color:var(--good)} .msg.no{color:var(--bad)}
+
+/* OGE */
+.task{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:12px}
+.task h2{font-family:var(--display);font-weight:600;font-size:1.1rem;margin:0}
+.instr{margin:0;font-size:.95rem;color:var(--muted)}
+.oge{width:100%;border-collapse:collapse}
+.oge td{padding:8px 6px;vertical-align:top;border-bottom:1px solid var(--line)}
+.oge td.n{width:2.2em;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.oge td.w{width:8.5em;text-align:right;font-weight:700;letter-spacing:.04em;font-size:.95rem}
+.oge tr.plain td{border-bottom:1px solid var(--line)}
+.gap{font:500 1rem var(--body);color:var(--ink);background:var(--soft);border:0;border-bottom:2px solid var(--accent);border-radius:4px 4px 0 0;width:10em;max-width:100%;padding:2px 6px}
+.gap.ok{border-bottom-color:var(--good);background:var(--good-bg)}
+.gap.no{border-bottom-color:var(--bad);background:var(--bad-bg)}
+.fix{display:block;font-size:.88rem;color:var(--bad);font-weight:500}
+@media (max-width:520px){.oge td.w{width:6.5em;font-size:.8rem}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Word building: <span>verb → noun</span></h1>
+    <p class="sub">Карточки, тренировка и задания в формате ОГЭ</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-cards" aria-selected="true" aria-controls="p-cards" type="button">Карточки</button>
+    <button class="tab" role="tab" id="t-drill" aria-selected="false" aria-controls="p-drill" type="button">Тренировка</button>
+    <button class="tab" role="tab" id="t-oge" aria-selected="false" aria-controls="p-oge" type="button">ОГЭ</button>
+  </div>
+
+  <!-- CARDS -->
+  <section id="p-cards" role="tabpanel" aria-labelledby="t-cards" style="display:grid;gap:14px">
+    <div class="row">
+      <div class="seg" role="group" aria-label="Направление">
+        <button type="button" data-dir="en" aria-pressed="true">EN → RU</button><button type="button" data-dir="ru" aria-pressed="false">RU → EN</button>
+      </div>
+      <span class="pill" id="cstat">Знаю: 0 · Учу: 0 · Осталось: 21</span>
+    </div>
+    <div class="bar"><i id="cbar"></i></div>
+    <div class="deck" id="deck">
+      <button class="flash" id="flash" type="button" aria-label="Перевернуть карточку">
+        <div class="face front"><div class="big" id="ff"></div><div class="hint">нажми, чтобы перевернуть</div></div>
+        <div class="face back"><div class="big" id="fb"></div><div class="small" id="fs"></div></div>
+      </button>
+    </div>
+    <div class="done" id="cdone" hidden>
+      <div class="big">Готово!</div>
+      <p class="muted" id="cdonetxt"></p>
+      <div class="btns" style="justify-content:center"><button class="btn main" id="again" type="button">Повторить те, что учу</button><button class="btn" id="restart" type="button">Начать заново</button></div>
+    </div>
+    <div class="row" id="cbtns">
+      <div class="btns"><button class="btn learn" id="learn" type="button">Ещё учу</button><button class="btn know" id="know" type="button">Знаю ✓</button></div>
+      <button class="btn" id="cshuf" type="button">Перемешать</button>
+    </div>
+    <p class="hint">Клавиши: пробел — перевернуть, → знаю, ← ещё учу.</p>
+  </section>
+
+  <!-- DRILL -->
+  <section id="p-drill" role="tabpanel" aria-labelledby="t-drill" hidden style="display:grid;gap:14px">
+    <div class="row"><span class="muted">Напиши существительное от глагола. Нажми Enter, чтобы проверить.</span><span class="pill" id="dstat">0 / 21</span></div>
+    <div class="drill">
+      <div class="verb" id="dverb"></div>
+      <div class="muted" id="dru"></div>
+      <input id="din" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Существительное">
+      <p class="msg" id="dmsg" aria-live="polite"></p>
+      <div class="btns" style="justify-content:center">
+        <button class="btn" id="dhint" type="button">Подсказка</button>
+        <button class="btn main" id="dcheck" type="button">Проверить</button>
+        <button class="btn" id="dnext" type="button">Дальше →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OGE -->
+  <section id="p-oge" role="tabpanel" aria-labelledby="t-oge" hidden style="display:grid;gap:16px">
+    <p class="instr">Прочитайте текст. Образуйте от слов, напечатанных заглавными буквами в конце строк, обозначенных номерами, однокоренные слова так, чтобы они грамматически и лексически соответствовали содержанию текста. Заполните пропуски полученными словами.</p>
+    <div id="texts" style="display:grid;gap:16px"></div>
+  </section>
+</div>
+
+<script>
+const W = [
+ ["complete","completion","завершение"], ["achieve","achievement","достижение"], ["prepare","preparation","подготовка"],
+ ["explore","exploration","исследование"], ["imagine","imagination","воображение"], ["relax","relaxation","отдых, расслабление"],
+ ["entertain","entertainment","развлечение"], ["develop","development","развитие"], ["fail","failure","неудача, провал"],
+ ["argue","argument","спор"], ["translate","translation","перевод"], ["erupt","eruption","извержение"],
+ ["motivate","motivation","мотивация"], ["examine","examination","экзамен; осмотр"], ["decide","decision","решение"],
+ ["inform","information","информация"], ["improve","improvement","улучшение"], ["disappoint","disappointment","разочарование"],
+ ["warn","warning","предупреждение"], ["rescue","rescue","спасение"], ["attempt","attempt","попытка"],
+];
+const shuffle = a => { const b = a.slice(); for(let i = b.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const norm = s => s.trim().toLowerCase().replace(/\s+/g, " ");
+const suffix = n => n.endsWith("ment") ? "-ment" : n.endsWith("ure") ? "-ure" : n.endsWith("ing") ? "-ing" : /(sion|tion)$/.test(n) ? "-(a)tion / -sion" : "то же слово";
+
+/* ---------- Cards ---------- */
+let dir = "en", queue = [], know = 0, learning = [], flipped = false, total = W.length;
+const flash = document.getElementById("flash");
+function startDeck(list){ queue = shuffle(list); learning = []; total = list.length; know = 0; showCard(); }
+function showCard(){
+  const done = !queue.length;
+  document.getElementById("deck").hidden = done; document.getElementById("cbtns").hidden = done; document.getElementById("cdone").hidden = !done;
+  document.getElementById("cstat").textContent = `Знаю: ${know} · Учу: ${learning.length} · Осталось: ${queue.length}`;
+  document.getElementById("cbar").style.width = Math.round((total - queue.length) / total * 100) + "%";
+  if(done){ document.getElementById("cdonetxt").textContent = `Знаю: ${know} из ${total}. Ещё учу: ${learning.length}.`; document.getElementById("again").hidden = !learning.length; return; }
+  const [v, n, r] = queue[0];
+  flipped = false; flash.classList.remove("flipped");
+  document.getElementById("ff").textContent = dir === "en" ? n : r;
+  document.getElementById("fb").textContent = dir === "en" ? r : n;
+  document.getElementById("fs").innerHTML = `verb: <b>${v}</b> → noun: <b>${n}</b>`;
+}
+flash.onclick = () => { flipped = !flipped; flash.classList.toggle("flipped", flipped); };
+function mark(ok){ if(!queue.length) return; const c = queue.shift(); if(ok) know++; else learning.push(c); showCard(); }
+document.getElementById("know").onclick = () => mark(true);
+document.getElementById("learn").onclick = () => mark(false);
+document.getElementById("cshuf").onclick = () => { queue = shuffle(queue); showCard(); };
+document.getElementById("again").onclick = () => startDeck(learning);
+document.getElementById("restart").onclick = () => startDeck(W);
+document.querySelectorAll("[data-dir]").forEach(b => b.onclick = () => {
+  dir = b.dataset.dir; document.querySelectorAll("[data-dir]").forEach(x => x.setAttribute("aria-pressed", x === b)); showCard();
+});
+startDeck(W);
+
+/* ---------- Drill ---------- */
+let dq = shuffle(W), di = 0, dscore = 0, answered = false;
+const din = document.getElementById("din"), dmsg = document.getElementById("dmsg");
+function showDrill(){
+  if(di >= dq.length){ dq = shuffle(W); di = 0; dscore = 0; }
+  const [v, n, r] = dq[di]; answered = false;
+  document.getElementById("dverb").textContent = v;
+  document.getElementById("dru").textContent = r;
+  din.value = ""; din.className = ""; dmsg.textContent = ""; dmsg.className = "msg";
+  document.getElementById("dstat").textContent = `${dscore} / ${dq.length}`;
+  din.focus();
+}
+function checkDrill(){
+  if(answered){ di++; showDrill(); return; }
+  const n = dq[di][1];
+  if(norm(din.value) === n){
+    din.className = "ok"; dmsg.className = "msg ok"; dmsg.textContent = "Верно! Нажми Enter, чтобы идти дальше."; dscore++; answered = true;
+    document.getElementById("dstat").textContent = `${dscore} / ${dq.length}`;
+  } else {
+    din.className = "no"; dmsg.className = "msg no"; dmsg.textContent = din.value.trim() ? "Почти! Проверь суффикс и написание." : "Напиши слово.";
+  }
+}
+din.addEventListener("keydown", e => { if(e.key === "Enter"){ e.preventDefault(); checkDrill(); } });
+document.getElementById("dcheck").onclick = checkDrill;
+document.getElementById("dnext").onclick = () => {
+  if(!answered){ din.value = dq[di][1]; din.className = "no"; dmsg.className = "msg no"; dmsg.textContent = `Правильно: ${dq[di][1]}`; answered = true; return; }
+  di++; showDrill();
+};
+document.getElementById("dhint").onclick = () => { const n = dq[di][1]; dmsg.className = "msg"; dmsg.textContent = `Суффикс: ${suffix(n)} · начинается на «${n.slice(0, 3)}…»`; };
+
+/* ---------- OGE ---------- */
+const TEXTS = [
+ { title:"Текст 1 · Young explorers", rows:[
+   ["After the {} of her exams, sixteen-year-old Anna went on her first big adventure.","COMPLETE","completion"],
+   ["The {} for the trip took her six months. She trained every day.","PREPARE","preparation"],
+   ["She also read a lot of {} about the mountain and the weather.","INFORM","information"],
+   ["Climbing to the top was a great {} for a girl of her age.","ACHIEVE","achievement"],
+   ["Her parents were worried at first, but in the end they agreed with her {}.","DECIDE","decision"],
+   ["Now she dreams about the {} of the Arctic.","EXPLORE","exploration"] ]},
+ { title:"Текст 2 · The volcano", rows:[
+   ["In 2010, the {} of a volcano in Iceland stopped flights all over Europe.","ERUPT","eruption"],
+   ["Thousands of passengers couldn’t fly home. It was a big {} for many travellers.","DISAPPOINT","disappointment"],
+   ["Some airports offered free {}, like films and games, to the passengers.","ENTERTAIN","entertainment"],
+   ["Hotels near the airports gave people a place for rest and {}.","RELAX","relaxation"],
+   ["Since then, the {} of new technology has helped scientists study volcanoes.","DEVELOP","development"],
+   ["Today, people living near volcanoes can get a {} days before an eruption.","WARN","warning"] ]},
+ { title:"Текст 3 · Exam time", rows:[
+   ["Many students feel stressed before an important {}.","EXAMINE","examination"],
+   ["Teachers say that {} is the key to success: you need a reason to study.","MOTIVATE","motivation"],
+   ["Use your {}: picture yourself passing the exam with a great result.","IMAGINE","imagination"],
+   ["Don’t be afraid of {}. Everyone makes mistakes, and we learn from them.","FAIL","failure"],
+   ["If you have an {} with your parents about studying, try to stay calm.","ARGUE","argument"],
+   ["Remember that even a small {} every week is a big step forward.","IMPROVE","improvement"] ]},
+];
+const texts = document.getElementById("texts");
+TEXTS.forEach((t, ti) => {
+  const box = document.createElement("div"); box.className = "task";
+  const rows = t.rows.map(([s, w, a], k) => {
+    const id = `o${ti}_${k}`;
+    return `<tr><td class="n">${k + 1}</td><td>${s.replace("{}", `<input class="gap" id="${id}" data-a="${a}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Пропуск ${k + 1}">`)}<span class="fix" hidden></span></td><td class="w">${w}</td></tr>`;
+  }).join("");
+  box.innerHTML = `<div class="row"><h2>${t.title}</h2><span class="pill" data-score>— / 6</span></div>
+    <div style="overflow-x:auto"><table class="oge"><tbody>${rows}</tbody></table></div>
+    <div class="btns"><button class="btn main" type="button" data-act="check">Проверить</button><button class="btn" type="button" data-act="show">Показать ответы</button><button class="btn" type="button" data-act="clear">Очистить</button></div>`;
+  box.addEventListener("click", e => {
+    const act = e.target.closest("[data-act]")?.dataset.act; if(!act) return;
+    const gaps = [...box.querySelectorAll(".gap")]; let sc = 0;
+    gaps.forEach(g => {
+      const fix = g.parentElement.querySelector(".fix");
+      if(act === "clear"){ g.value = ""; g.className = "gap"; fix.hidden = true; return; }
+      if(act === "show" && norm(g.value) !== g.dataset.a){ fix.textContent = "Ответ: " + g.dataset.a; fix.hidden = false; g.className = "gap no"; return; }
+      const ok = norm(g.value) === g.dataset.a; if(ok) sc++;
+      g.className = "gap " + (ok ? "ok" : "no"); fix.hidden = true;
+    });
+    if(act === "check") box.querySelector("[data-score]").textContent = `${sc} / 6`;
+    if(act === "clear") box.querySelector("[data-score]").textContent = "— / 6";
+  });
+  box.querySelectorAll(".gap").forEach(g => g.addEventListener("input", () => { g.className = "gap"; }));
+  texts.append(box);
+});
+
+/* ---------- tabs + keys ---------- */
+const TABS = [["t-cards","p-cards"],["t-drill","p-drill"],["t-oge","p-oge"]];
+function openTab(id){
+  TABS.forEach(([t, p]) => { const on = t === id; document.getElementById(t).setAttribute("aria-selected", on); document.getElementById(p).hidden = !on; });
+  if(id === "t-drill") showDrill();
+}
+TABS.forEach(([t]) => document.getElementById(t).onclick = () => openTab(t));
+document.addEventListener("keydown", e => {
+  if(document.getElementById("p-cards").hidden || e.target.closest("input")) return;
+  if(e.key === " "){ e.preventDefault(); flash.click(); }
+  if(e.key === "ArrowRight") mark(true);
+  if(e.key === "ArrowLeft") mark(false);
+});
+</script>
+
+</body></html>
