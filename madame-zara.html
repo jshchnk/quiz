@@ -1,0 +1,239 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Madame Zara’s Crystal Ball</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Karla:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+<style>
+/* Single, deliberate night look: fortune-teller's tent. Header with crystal ball, four "cards" tabs, one panel at a time. */
+:root{
+  color-scheme:dark;
+  --bg:#150c2b; --bg2:#22134a; --surface:#1f1442; --surface2:#2a1c5a; --ink:#f3ecff; --muted:#b9a9e6; --line:#3d2c78;
+  --gold:#f4c95d; --gold-ink:#2a1a00; --pink:#ff6fb5; --teal:#5fe0d0;
+  --good:#7ce3a6; --good-bg:#173b2f; --bad:#ff8a8a; --bad-bg:#40172a;
+  --display:"Cinzel","Trajan Pro",Georgia,serif;
+  --body:"Karla","Segoe UI",system-ui,sans-serif;
+}
+body{background:var(--bg);background-image:radial-gradient(circle at 15% 10%,rgba(255,255,255,.08) 0 1px,transparent 2px),
+  radial-gradient(circle at 75% 25%,rgba(255,255,255,.07) 0 1px,transparent 2px),radial-gradient(circle at 40% 70%,rgba(255,255,255,.06) 0 1px,transparent 2px),
+  radial-gradient(ellipse at top,var(--bg2),var(--bg) 60%);background-size:220px 220px,300px 300px,260px 260px,100% 100%;
+  color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:960px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:grid;gap:18px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;justify-content:space-between}
+.title{display:flex;align-items:center;gap:16px;min-width:0}
+.ball{width:84px;height:84px;flex:none}
+@media (prefers-reduced-motion: no-preference){.ball .glow{animation:glow 3s ease-in-out infinite}}
+@keyframes glow{50%{opacity:.45}}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,4.6vw,2.4rem);line-height:1.1;margin:0;color:var(--gold);text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--muted)}
+.score{border:2px solid var(--gold);border-radius:999px;padding:8px 18px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--gold)}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.tab{font:600 1rem var(--body);text-align:left;padding:12px 14px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;gap:2px}
+.tab small{color:var(--muted);font-weight:400}
+.tab b{font-family:var(--display);font-weight:600;color:var(--gold);font-size:.85rem;letter-spacing:.08em}
+.tab[aria-selected="true"]{border-color:var(--gold);background:var(--surface2);box-shadow:0 0 0 3px rgba(244,201,93,.25)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:20px clamp(16px,3vw,28px);display:grid;gap:14px}
+.ph{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
+.ph h2{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:0;color:var(--gold)}
+.pts{color:var(--muted);font-weight:700;font-variant-numeric:tabular-nums}
+.zara{margin:0;background:var(--surface2);border-left:4px solid var(--pink);border-radius:8px;padding:10px 14px;font-style:italic}
+.zara b{font-style:normal;color:var(--pink)}
+.how{margin:0;color:var(--muted)}
+.item{display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-of-type{border-bottom:0}
+.n{font-family:var(--display);font-weight:800;color:var(--teal);margin-right:8px}
+u{text-decoration-color:var(--pink);text-decoration-thickness:2px;text-underline-offset:3px}
+.gap{font:600 1rem var(--body);color:var(--ink);background:var(--bg);border:0;border-bottom:2px solid var(--teal);border-radius:4px 4px 0 0;padding:3px 8px;width:16em;max-width:100%}
+.gap.ok{background:var(--good-bg);border-bottom-color:var(--good)} .gap.no{background:var(--bad-bg);border-bottom-color:var(--bad)}
+.fix{font-size:.92rem;color:var(--bad);font-weight:600}
+.fix.why{color:var(--muted);font-weight:400}
+.key{font-weight:700;letter-spacing:.06em;background:var(--gold);color:var(--gold-ink);padding:0 6px;border-radius:4px}
+.orig{margin:0;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:600 .95rem var(--body);padding:6px 13px;border-radius:999px;border:2px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--teal);background:var(--surface2);color:var(--teal)}
+.chip.right{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.chip.wrongpick{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.chip.missed{border-color:var(--good);border-style:dashed;color:var(--good)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:700 1rem var(--body);padding:10px 18px;border-radius:10px;border:2px solid var(--line);background:var(--surface2);color:var(--ink);cursor:pointer}
+.btn.go{background:var(--gold);border-color:var(--gold);color:var(--gold-ink)}
+.wheel{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+.slot{background:var(--bg);border:2px solid var(--line);border-radius:14px;padding:16px;text-align:center;display:grid;gap:6px}
+.slot span{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.slot b{font-family:var(--display);font-weight:600;font-size:1.4rem;color:var(--gold);min-height:2.6em;display:grid;place-items:center;line-height:1.2}
+.spin{justify-self:center;font:700 1.15rem var(--display);padding:12px 30px;border-radius:999px;border:2px solid var(--pink);background:var(--pink);color:#2b0016;cursor:pointer}
+.mode{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.ex{margin:0;text-align:center;color:var(--muted)}
+.ex i{color:var(--ink)}
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px}
+.rules div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.95rem}
+.rules b{color:var(--teal)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="title">
+      <svg class="ball" viewBox="0 0 84 84" aria-hidden="true">
+        <defs><radialGradient id="g" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#e8dcff"/><stop offset=".45" stop-color="#8f6bff"/><stop offset="1" stop-color="#2a1468"/></radialGradient></defs>
+        <circle class="glow" cx="42" cy="38" r="36" fill="#8f6bff" opacity=".25"/>
+        <circle cx="42" cy="38" r="30" fill="url(#g)"/>
+        <path d="M30 26c4-5 10-6 14-5" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+        <path d="M18 74h48l-6-10H24z" fill="#f4c95d"/><rect x="22" y="62" width="40" height="5" rx="2" fill="#c99b2e"/>
+      </svg>
+      <div><h1>Madame Zara’s Crystal Ball</h1><p class="sub">Time conjunctions: <i>as soon as, once, when, until, before, after</i></p></div>
+    </div>
+    <div class="score" id="score">Fortune: 0 / 36</div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" type="button" data-t="0"><b>CARD I</b>Zara’s mistakes<small>Find and fix</small></button>
+    <button class="tab" role="tab" type="button" data-t="1"><b>CARD II</b>Which ones work?<small>Choose all correct</small></button>
+    <button class="tab" role="tab" type="button" data-t="2"><b>CARD III</b>Join the visions<small>Key-word sentences</small></button>
+    <button class="tab" role="tab" type="button" data-t="3"><b>CARD IV</b>Wheel of fate<small>Speaking</small></button>
+  </div>
+
+  <!-- PART 1 -->
+  <section class="panel" data-p="0" role="tabpanel">
+    <div class="ph"><h2>Card I · Zara’s mistakes</h2><span class="pts" id="pts0">0 / 10</span></div>
+    <p class="zara">“I see your future… but my English is a little cloudy today. <b>Some of my predictions have mistakes.</b> Fix them, darling.”</p>
+    <p class="how">Look at the <u>underlined</u> part. If it’s wrong, correct it in the box. If it’s correct, leave it as it is.</p>
+    <div id="p1"></div>
+    <div class="btns"><button class="btn go" id="c0" type="button">Check</button><button class="btn" id="s0" type="button">Show answers</button></div>
+  </section>
+
+  <!-- PART 2 -->
+  <section class="panel" data-p="1" role="tabpanel" hidden>
+    <div class="ph"><h2>Card II · Which ones work?</h2><span class="pts" id="pts1">0 / 9</span></div>
+    <p class="zara">“The spirits give you three options. <b>One, two or even all three</b> can be right. Choose carefully!”</p>
+    <p class="how">Choose all the options that are correct. 1 point if the whole sentence is right.</p>
+    <div id="p2"></div>
+    <div class="btns"><button class="btn go" id="c1" type="button">Check</button></div>
+  </section>
+
+  <!-- PART 3 -->
+  <section class="panel" data-p="2" role="tabpanel" hidden>
+    <div class="ph"><h2>Card III · Join the visions</h2><span class="pts" id="pts2">0 / 12</span></div>
+    <p class="zara">“I see two things… then they become one. <b>Join my two visions with the magic word.</b>”</p>
+    <p class="how">Complete the second sentence so it means the same. Use the word in <span class="key">GOLD</span>. 2 points each.</p>
+    <div id="p3"></div>
+    <div class="btns"><button class="btn go" id="c2" type="button">Check</button><button class="btn" id="s2" type="button">Show answers</button></div>
+    <div class="rules">
+      <div><b>Future meaning?</b> After <i>as soon as, once, when, until, before, after</i> use the <b>present simple</b> or <b>present perfect</b>, never <i>will</i>.</div>
+      <div><b>Noun or -ing?</b> Only <i>before, after, until</i> can be followed by a noun or -ing. <i>As soon as, once, when</i> need a clause.</div>
+    </div>
+  </section>
+
+  <!-- PART 4 -->
+  <section class="panel" data-p="3" role="tabpanel" hidden>
+    <div class="ph"><h2>Card IV · Wheel of fate</h2></div>
+    <p class="zara">“Now <b>you</b> are the fortune teller. Spin the wheel and make a prediction.”</p>
+    <div class="mode" role="group" aria-label="Who is it about">
+      <button class="chip" type="button" data-m="me" aria-pressed="true">About me</button>
+      <button class="chip" type="button" data-m="t" aria-pressed="false">About my teacher</button>
+      <button class="chip" type="button" data-m="c" aria-pressed="false">About a celebrity</button>
+    </div>
+    <div class="wheel">
+      <div class="slot"><span>Magic word</span><b id="w1">?</b></div>
+      <div class="slot"><span>Life event</span><b id="w2">?</b></div>
+    </div>
+    <button class="spin" id="spin" type="button">Spin the wheel</button>
+    <p class="ex" id="ex">Example: <i>As soon as I graduate, I’m going to buy a motorbike.</i></p>
+  </section>
+</div>
+
+<script>
+const norm = s => s.trim().toLowerCase().replace(/[’']/g, "'").replace(/[.,!?]/g, "").replace(/\s+/g, " ");
+const scores = [0, 0, 0];
+function upd(i, s, max){ scores[i] = s; document.getElementById("pts" + i).textContent = `${s} / ${max}`;
+  document.getElementById("score").textContent = `Fortune: ${scores.reduce((a, b) => a + b, 0)} / 36`; }
+
+/* Part 1 */
+const P1 = [
+ ["As soon as you {will meet} him, you’ll know he’s the one.", ["meet"], "No <i>will</i> after <i>as soon as</i>."],
+ ["You won’t be rich until you {stop} buying lottery tickets.", ["stop"], "Correct!"],
+ ["Once you {will have finished} university, a big surprise will be waiting for you.", ["have finished","'ve finished","finish"], "No <i>will</i> after <i>once</i>."],
+ ["You’ll move abroad before {you’ll turn} thirty.", ["you turn","you've turned","you have turned"], "No <i>will</i> after <i>before</i>."],
+ ["When you {retire}, you’ll finally learn to play the drums.", ["retire"], "Correct!"],
+ ["I see a big wedding… {After getting} married, you’ll adopt three cats.", ["after getting"], "Correct! <i>After</i> + -ing is fine."],
+ ["You won’t leave home until your mum {will throw} you out.", ["throws","has thrown"], "No <i>will</i> after <i>until</i>."],
+ ["{As soon as} the graduation party, you’ll find your dream job.", ["after","straight after","right after","soon after"], "<i>As soon as</i> can’t go before a noun. Use <i>after</i>."],
+ ["Your life will change completely {once you’ve had} children.", ["once you've had","once you have had","once you have"], "Correct!"],
+ ["You’ll become famous when you {will be} forty.", ["are","'re"], "No <i>will</i> after <i>when</i>."],
+];
+document.getElementById("p1").innerHTML = P1.map(([s, a], i) => {
+  const under = s.match(/\{(.+?)\}/)[1];
+  return `<div class="item"><p style="margin:0"><span class="n">${i + 1}</span>${s.replace(/\{(.+?)\}/, "<u>$1</u>")}</p>
+    <div><input class="gap" id="p1_${i}" type="text" value="${under.replace(/"/g, "&quot;")}" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Correction ${i + 1}"></div>
+    <span class="fix" hidden></span></div>`;
+}).join("");
+document.getElementById("c0").onclick = () => { let s = 0;
+  P1.forEach((p, i) => { const g = document.getElementById("p1_" + i), ok = p[1].map(norm).includes(norm(g.value));
+    g.className = "gap " + (ok ? "ok" : "no"); if(ok) s++; const f = g.closest(".item").querySelector(".fix"); f.hidden = !ok; f.className = "fix why"; f.innerHTML = p[2]; });
+  upd(0, s, 10); };
+document.getElementById("s0").onclick = () => P1.forEach((p, i) => { const g = document.getElementById("p1_" + i);
+  if(!p[1].map(norm).includes(norm(g.value))){ const f = g.closest(".item").querySelector(".fix"); f.className = "fix"; f.innerHTML = `Answer: ${p[1][0]} · ${p[2]}`; f.hidden = false; } });
+
+/* Part 2 */
+const P2 = [
+ ["I’ll call you ___ I land.", [["as soon as",1],["once",1],["until",0]]],
+ ["We didn’t live together ___ we got married.", [["until",1],["before",1],["as soon as",0]]],
+ ["___ the ceremony, everyone went to the party.", [["After",1],["Once",0],["When",0]]],
+ ["Don’t open your presents ___ everyone has arrived.", [["until",1],["before",1],["as soon as",0]]],
+ ["I’ll start looking for a job once I ___ my degree.", [["finish",1],["have finished",1],["will finish",0]]],
+ ["She burst into tears ___ she heard the news.", [["as soon as",1],["when",1],["during",0]]],
+ ["Before ___ to university, he worked in a café for a year.", [["going",1],["he went",1],["to go",0]]],
+ ["You can’t vote ___ you’re eighteen.", [["until",1],["before",1],["after",0]]],
+ ["I’ll tell you as soon as I ___ the results.", [["know",1],["have known",0],["will know",0]]],
+];
+document.getElementById("p2").innerHTML = P2.map(([s, o], i) => `<div class="item" data-i="${i}"><p style="margin:0"><span class="n">${i + 1}</span>${s.replace("___", "_____")}</p>
+  <div class="chips">${o.map(([t], k) => `<button class="chip" type="button" data-k="${k}" aria-pressed="false">${t}</button>`).join("")}</div></div>`).join("");
+document.getElementById("p2").addEventListener("click", e => { const c = e.target.closest(".chip"); if(!c || c.disabled) return; c.setAttribute("aria-pressed", c.getAttribute("aria-pressed") !== "true"); });
+document.getElementById("c1").onclick = () => { let s = 0;
+  document.querySelectorAll("#p2 .item").forEach(it => { const o = P2[it.dataset.i][1]; let all = true;
+    it.querySelectorAll(".chip").forEach(c => { const want = o[c.dataset.k][1] === 1, on = c.getAttribute("aria-pressed") === "true"; c.disabled = true;
+      if(want && on) c.classList.add("right"); else if(!want && on){ c.classList.add("wrongpick"); all = false; } else if(want && !on){ c.classList.add("missed"); all = false; } });
+    if(all) s++; });
+  upd(1, s, 9); };
+
+/* Part 3 */
+const P3 = [
+ ["I’ll finish my exams. Then I’ll go on holiday.", "{} my exams, I’ll go on holiday.", "ONCE", ["once i've finished","once i have finished","once i finish"]],
+ ["We’ll get the keys. Straight after that, we’ll move in.", "We’ll move in {} the keys.", "AS SOON AS", ["as soon as we get","as soon as we've got","as soon as we have got","as soon as we've received","as soon as we receive","as soon as we have received"]],
+ ["He paid off his mortgage. Only then did he retire.", "He didn’t retire {} his mortgage.", "UNTIL", ["until he had paid off","until he'd paid off","until he paid off"]],
+ ["They graduated. Then they got married.", "They got married {}.", "AFTER", ["after they graduated","after graduating","after they had graduated","after they'd graduated","after their graduation","after they finished university"]],
+ ["I’m going to buy a car. But first I need to pass my driving test.", "I need to pass my driving test {} a car.", "BEFORE", ["before i buy","before buying","before i can buy","before i get","before getting"]],
+ ["My sister will have the baby. I’ll visit her straight after that.", "I’ll visit my sister {} the baby.", "WHEN", ["when she has","when she's had","when she has had"]],
+];
+document.getElementById("p3").innerHTML = P3.map(([a, b, k], i) => `<div class="item"><p class="orig"><span class="n">${i + 1}</span>${a}</p>
+  <div>${b.replace("{}", `<input class="gap" id="p3_${i}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Sentence ${i + 1}">`)} <span class="key">${k}</span></div>
+  <span class="fix" hidden></span></div>`).join("");
+document.getElementById("c2").onclick = () => { let s = 0;
+  P3.forEach((p, i) => { const g = document.getElementById("p3_" + i), ok = p[3].includes(norm(g.value)); g.className = "gap " + (ok ? "ok" : "no"); if(ok) s += 2; });
+  upd(2, s, 12); };
+document.getElementById("s2").onclick = () => P3.forEach((p, i) => { const g = document.getElementById("p3_" + i);
+  if(!p[3].includes(norm(g.value))){ const f = g.closest(".item").querySelector(".fix"); f.className = "fix"; f.textContent = "Answer: " + p[3][0].replace(/^i /, "I ").replace(/ i /g, " I "); f.hidden = false; } });
+
+/* Part 4 */
+const WORDS = ["as soon as","once","when","until","before","after"];
+const EVENTS = {
+  me:["finish school","get my first job","learn to drive","move abroad","get married","buy a house","retire","have children","become rich","finish this book"],
+  t:["retire","move to the moon","win the lottery","write a bestseller","get a dog","become a TikTok star","learn Chinese","run a marathon","open a café","stop giving homework"],
+  c:["retire","get married (again)","move to a farm","win an Oscar","become a politician","release a new album","have twins","open a restaurant","write their autobiography","disappear from social media"],
+};
+const EX = { me:"As soon as I get my first job, I’m going to buy a motorbike.", t:"Our teacher won’t stop giving homework until she retires.", c:"Once Taylor Swift has written her autobiography, it’ll be a bestseller." };
+let mode = "me";
+const pick = a => a[Math.floor(Math.random() * a.length)];
+document.getElementById("spin").onclick = () => { document.getElementById("w1").textContent = pick(WORDS); document.getElementById("w2").textContent = pick(EVENTS[mode]); };
+document.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { mode = b.dataset.m;
+  document.querySelectorAll("[data-m]").forEach(x => x.setAttribute("aria-pressed", x === b));
+  document.getElementById("ex").innerHTML = `Example: <i>${EX[mode]}</i>`; });
+
+/* tabs */
+function open(t){ document.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", b.dataset.t == t));
+  document.querySelectorAll(".panel").forEach(p => p.hidden = p.dataset.p != t); }
+document.querySelectorAll(".tab").forEach(b => b.onclick = () => open(b.dataset.t));
+open(0);
+</script>
+
+</html>
