@@ -1,0 +1,249 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Review 3 Showdown</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: game-show scoreboard header, round tabs as "lights", one round panel at a time. */
+:root{
+  --bg:#eef1fb; --surface:#ffffff; --ink:#141a3a; --muted:#5a6286; --line:#d6dbef;
+  --stage:#1b2a8c; --stage-ink:#ffffff; --gold:#ffcc2e; --gold-ink:#2a2000; --pink:#e5337c; --pink-ink:#ffffff;
+  --good:#1d8a55; --good-bg:#def4e8; --bad:#cc3d3d; --bad-bg:#fbe5e5; --soft:#eef0fb;
+  --display:"Bungee","Impact",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d1130; --surface:#161c45; --ink:#eef0ff; --muted:#a3aad6; --line:#2a3270;
+  --stage:#2b3cc4; --stage-ink:#ffffff; --gold:#ffcc2e; --gold-ink:#2a2000; --pink:#ff5c9b; --pink-ink:#1b0010;
+  --good:#6fd6a0; --good-bg:#14382a; --bad:#ff8585; --bad-bg:#3c1a22; --soft:#1e2558; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d1130; --surface:#161c45; --ink:#eef0ff; --muted:#a3aad6; --line:#2a3270;
+  --stage:#2b3cc4; --stage-ink:#ffffff; --gold:#ffcc2e; --gold-ink:#2a2000; --pink:#ff5c9b; --pink-ink:#1b0010;
+  --good:#6fd6a0; --good-bg:#14382a; --bad:#ff8585; --bad-bg:#3c1a22; --soft:#1e2558; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding-block:20px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:grid;gap:16px}
+.board{background:var(--stage);color:var(--stage-ink);border-radius:18px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;
+  box-shadow:inset 0 0 0 4px var(--gold)}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,5vw,2.6rem);line-height:1;margin:0;letter-spacing:.02em}
+h1 span{color:var(--gold)}
+.board p{margin:4px 0 0;opacity:.85;font-weight:600}
+.total{background:var(--gold);color:var(--gold-ink);border-radius:12px;padding:8px 16px;text-align:center;min-width:120px}
+.total small{display:block;font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+.total b{font-family:var(--display);font-weight:400;font-size:1.9rem;font-variant-numeric:tabular-nums}
+.rounds{display:flex;flex-wrap:wrap;gap:8px}
+.rt{font:800 .95rem var(--body);padding:9px 14px;border-radius:999px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:flex;gap:8px;align-items:center}
+.rt i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.rt.done i{background:var(--good)}
+.rt[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:18px;padding:20px clamp(16px,3vw,28px);display:grid;gap:16px}
+.ph{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px}
+.ph h2{font-family:var(--display);font-weight:400;font-size:1.35rem;margin:0;color:var(--pink)}
+.ph .pts{font-weight:800;color:var(--muted);font-variant-numeric:tabular-nums}
+.how{margin:0;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:800 1rem var(--body);padding:10px 18px;border-radius:10px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.go{background:var(--pink);border-color:var(--pink);color:var(--pink-ink)}
+.item{display:grid;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.item .n{font-family:var(--display);font-weight:400;color:var(--stage);margin-right:6px}
+:root[data-theme="dark"] .item .n{color:var(--gold)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .item .n{color:var(--gold)}}
+.orig{margin:0;color:var(--muted)}
+.key{font-weight:800;letter-spacing:.06em;background:var(--gold);color:var(--gold-ink);padding:0 6px;border-radius:4px;margin-left:6px}
+.gap{font:600 1rem var(--body);color:var(--ink);background:var(--soft);border:0;border-bottom:2px solid var(--stage);border-radius:4px 4px 0 0;padding:2px 6px;width:15em;max-width:100%}
+.gap.short{width:6em}
+.gap.ok{background:var(--good-bg);border-bottom-color:var(--good)}
+.gap.no{background:var(--bad-bg);border-bottom-color:var(--bad)}
+.fix{font-size:.9rem;color:var(--bad);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:700 .95rem var(--body);padding:6px 12px;border-radius:999px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--stage);border-color:var(--stage);color:var(--stage-ink)}
+.chip.right{background:var(--good);border-color:var(--good);color:var(--surface)}
+.chip.wrongpick{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.chip.missed{border-color:var(--good);border-style:dashed;color:var(--good)}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px}
+.col{display:grid;gap:8px;align-content:start}
+.mb{font:700 .98rem var(--body);text-align:left;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer}
+.mb[aria-pressed="true"]{border-color:var(--stage);background:var(--surface);box-shadow:0 0 0 3px var(--gold)}
+.mb.paired{background:var(--good-bg);border-color:var(--good);color:var(--good);cursor:default}
+.mb.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@media (prefers-reduced-motion: reduce){.mb.shake{animation:none}}
+.sort{display:grid;gap:14px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:2px dashed var(--line);border-radius:12px}
+.bins{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:620px){.bins{grid-template-columns:1fr}.match{grid-template-columns:1fr}}
+.bin{border:2px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:8px;align-content:start;min-height:120px;background:var(--soft);cursor:pointer;text-align:left;font:inherit;color:inherit}
+.bin h3{margin:0;font-family:var(--display);font-weight:400;font-size:1rem;color:var(--stage)}
+.bin .chips{min-height:30px}
+.word{font:700 .95rem var(--body);padding:6px 12px;border-radius:999px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer}
+.word[aria-pressed="true"]{background:var(--gold);color:var(--gold-ink);border-color:var(--gold)}
+.word.ok{border-color:var(--good);color:var(--good)} .word.no{border-color:var(--bad);color:var(--bad)}
+.final{text-align:center;display:grid;gap:10px;justify-items:center}
+.badge{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,6vw,2.8rem);color:var(--pink);line-height:1.1}
+.scorelist{display:grid;grid-template-columns:auto auto;gap:4px 24px;font-variant-numeric:tabular-nums}
+</style>
+
+<div class="wrap">
+  <div class="board">
+    <div><h1>Review 3 <span>Showdown</span></h1><p>Five rounds. Grammar, collocations and vocabulary. Go!</p></div>
+    <div class="total"><small>Score</small><b id="total">0</b> <span>/ 47</span></div>
+  </div>
+  <div class="rounds" role="tablist" id="tabs"></div>
+  <div id="panels"></div>
+</div>
+
+<script>
+const norm = s => s.trim().toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, " ").replace(/[.!?,]$/, "");
+const shuffle = a => { const b = a.slice(); for(let i = b.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const scores = [0,0,0,0,0], maxes = [12,7,10,12,6];
+function setScore(r, s){ scores[r] = s; document.getElementById("total").textContent = scores.reduce((a, b) => a + b, 0);
+  document.querySelector(`[data-tab="${r}"]`).classList.add("done"); document.getElementById("pts" + r).textContent = `${s} / ${maxes[r]} points`; renderFinal(); }
+
+const ROUNDS = ["Round 1 · Key word","Round 2 · Pick all","Round 3 · Match-up","Round 4 · Sport or stay?","Round 5 · Same word","Final score"];
+const tabs = document.getElementById("tabs"), panels = document.getElementById("panels");
+ROUNDS.forEach((name, i) => {
+  const b = document.createElement("button"); b.className = "rt"; b.type = "button"; b.setAttribute("role","tab"); b.dataset.tab = i;
+  b.innerHTML = `<i></i>${name}`; b.onclick = () => openRound(i); tabs.append(b);
+  const p = document.createElement("section"); p.className = "panel"; p.id = "panel" + i; p.hidden = true; p.setAttribute("role","tabpanel");
+  panels.append(p);
+});
+function openRound(i){ document.querySelectorAll(".rt").forEach((b, k) => b.setAttribute("aria-selected", k === i)); document.querySelectorAll(".panel").forEach((p, k) => p.hidden = k !== i); }
+const head = (i, title, how) => `<div class="ph"><h2>${title}</h2><span class="pts" id="pts${i}">0 / ${maxes[i]} points</span></div><p class="how">${how}</p>`;
+
+/* ---------- Round 1: key word transformations ---------- */
+const R1 = [
+ ["I started playing the guitar three years ago.", "I {} for three years.", "GUITAR", ["have been playing the guitar","'ve been playing the guitar","have played the guitar","'ve played the guitar","have been learning the guitar","'ve been learning the guitar"]],
+ ["The meeting was totally useless.", "The meeting was {} time.", "WASTE", ["a complete waste of","a total waste of","a waste of","an absolute waste of","a real waste of"]],
+ ["My car is at the garage. A mechanic is fixing it.", "I {} at the moment.", "REPAIRED", ["am having my car repaired","'m having my car repaired","am getting my car repaired","'m getting my car repaired","am having it repaired","'m having it repaired"]],
+ ["It was a mistake not to book a table.", "We {} a table.", "SHOULD", ["should have booked","should've booked"]],
+ ["He fell off the roof. He was very lucky to survive.", "He {}. He was very lucky.", "DIED", ["could have died","could've died","might have died","might've died"]],
+ ["We’ve been considering a move abroad for a while.", "We {} of moving abroad for a while.", "THINKING", ["have been thinking","'ve been thinking"]],
+];
+document.getElementById("panel0").innerHTML = head(0, "Round 1 · Key word",
+  "Complete the second sentence so it has a similar meaning. Use 3–5 words, including the word in <b>bold</b>. 2 points each.") +
+  R1.map(([a, b, k], i) => `<div class="item"><p class="orig"><span class="n">${i + 1}</span>${a}</p>
+    <div>${b.replace("{}", `<input class="gap" id="r1_${i}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Sentence ${i + 1}">`)} <span class="key">${k}</span></div>
+    <span class="fix" hidden></span></div>`).join("") +
+  `<div class="btns"><button class="btn go" id="c0" type="button">Check round 1</button><button class="btn" id="s0" type="button">Show answers</button></div>`;
+document.getElementById("c0").onclick = () => {
+  let s = 0;
+  R1.forEach((r, i) => { const g = document.getElementById("r1_" + i), ok = r[3].map(norm).includes(norm(g.value));
+    g.className = "gap " + (ok ? "ok" : "no"); if(ok) s += 2; g.closest(".item").querySelector(".fix").hidden = true; });
+  setScore(0, s);
+};
+document.getElementById("s0").onclick = () => R1.forEach((r, i) => { const g = document.getElementById("r1_" + i);
+  if(!r[3].map(norm).includes(norm(g.value))){ const f = g.closest(".item").querySelector(".fix"); f.textContent = "Answer: " + r[3][0]; f.hidden = false; } });
+
+/* ---------- Round 2: choose all correct ---------- */
+const R2 = [
+ ["The view from our room was {} amazing.", [["absolutely",1],["really",1],["very",0]]],
+ ["Honestly, the hotel was {} dump.", [["a bit of a",1],["a real",1],["a very",0]]],
+ ["It was November, so there was {} anyone on the beach.", [["hardly",1],["barely",1],["nearly",0]]],
+ ["The second half of the match was {} boring.", [["a bit",1],["really",1],["absolutely",0]]],
+ ["I {} that museum a few times. It’s great.", [["’ve visited",1],["’ve been visiting",0],["’m visiting",0]]],
+ ["You {} come with us! It was the best party ever.", [["should’ve",1],["could’ve",1],["would’ve",0]]],
+ ["The roads were {} crowded on Saturday.", [["really",1],["very",1],["absolutely",0]]],
+];
+document.getElementById("panel1").innerHTML = head(1, "Round 2 · Pick all",
+  "Choose <b>all</b> the correct options. Careful: sometimes two are right! 1 point if you get the whole sentence right.") +
+  R2.map(([s, opts], i) => `<div class="item" data-i="${i}"><p><span class="n">${i + 1}</span>${s.replace("{}", "_____")}</p>
+    <div class="chips">${opts.map(([o], k) => `<button class="chip" type="button" data-k="${k}" aria-pressed="false">${o}</button>`).join("")}</div></div>`).join("") +
+  `<div class="btns"><button class="btn go" id="c1" type="button">Check round 2</button></div>`;
+document.getElementById("panel1").addEventListener("click", e => {
+  const c = e.target.closest(".chip"); if(!c || c.disabled) return; c.setAttribute("aria-pressed", c.getAttribute("aria-pressed") !== "true");
+});
+document.getElementById("c1").onclick = () => {
+  let s = 0;
+  document.querySelectorAll("#panel1 .item").forEach(it => {
+    const opts = R2[it.dataset.i][1]; let all = true;
+    it.querySelectorAll(".chip").forEach(c => { const want = opts[c.dataset.k][1] === 1, on = c.getAttribute("aria-pressed") === "true";
+      c.classList.remove("right","wrongpick","missed"); c.disabled = true;
+      if(want && on) c.classList.add("right"); else if(!want && on){ c.classList.add("wrongpick"); all = false; } else if(want && !on){ c.classList.add("missed"); all = false; } });
+    if(all) s++;
+  });
+  setScore(1, s);
+};
+
+/* ---------- Round 3: match-up ---------- */
+const R3 = [
+ ["They hit","the post twice in the first half."],["I tore","a muscle in my leg."],["The club sacked","the manager after five defeats."],
+ ["We really worked up","a sweat on that hill."],["Our hotel overlooked","the harbour."],["The team got promoted","to the top league."],
+ ["That holiday left us","quite out of pocket."],["I always get out of","breath on the stairs."],["She takes great","pride in her garden."],
+ ["Before the match, we discussed","tactics."],
+];
+const rightOrder = shuffle(R3.map((_, i) => i));
+document.getElementById("panel2").innerHTML = head(2, "Round 3 · Match-up",
+  "Click a beginning, then click its ending. 1 point for every pair you get right first time.") +
+  `<div class="match"><div class="col">${R3.map(([a], i) => `<button class="mb" type="button" data-l="${i}" aria-pressed="false">${a}</button>`).join("")}</div>
+   <div class="col">${rightOrder.map(i => `<button class="mb" type="button" data-r="${i}">${R3[i][1]}</button>`).join("")}</div></div>`;
+let selL = null, r3score = 0, r3pairs = 0; const missed = new Set();
+document.getElementById("panel2").addEventListener("click", e => {
+  const b = e.target.closest(".mb"); if(!b || b.classList.contains("paired")) return;
+  if(b.dataset.l !== undefined){ document.querySelectorAll("[data-l]").forEach(x => x.setAttribute("aria-pressed", "false")); b.setAttribute("aria-pressed","true"); selL = +b.dataset.l; return; }
+  if(selL === null) return;
+  const L = document.querySelector(`[data-l="${selL}"]`);
+  if(+b.dataset.r === selL){ L.classList.add("paired"); b.classList.add("paired"); L.setAttribute("aria-pressed","false");
+    if(!missed.has(selL)) r3score++; r3pairs++; selL = null; if(r3pairs === R3.length) setScore(2, r3score); else document.getElementById("pts2").textContent = `${r3score} / 10 points`; }
+  else { missed.add(selL); b.classList.remove("shake"); void b.offsetWidth; b.classList.add("shake"); }
+});
+
+/* ---------- Round 4: sort ---------- */
+const R4 = [["overtake","S"],["a substitute","S"],["a tackle","S"],["a time-out","S"],["a track","S"],["a referee","S"],
+            ["deserted","P"],["a dump","P"],["a landlord","P"],["self-catering","P"],["en-suite","P"],["facilities","B"]];
+const BINS = [["S","Sport"],["P","Places to stay"],["B","Both"]];
+document.getElementById("panel3").innerHTML = head(3, "Round 4 · Sport or stay?",
+  "Click a word, then click the box where it belongs. When all words are sorted, check your answers.") +
+  `<div class="sort"><div class="pool" id="pool">${shuffle(R4).map(([w, c]) => `<button class="word" type="button" data-c="${c}" aria-pressed="false">${w}</button>`).join("")}</div>
+   <div class="bins">${BINS.map(([k, t]) => `<div class="bin" data-bin="${k}" role="button" tabindex="0"><h3>${t}</h3><div class="chips"></div></div>`).join("")}</div>
+   <div class="btns"><button class="btn go" id="c3" type="button">Check round 4</button><button class="btn" id="r3reset" type="button">Start round again</button></div></div>`;
+let selW = null;
+document.getElementById("panel3").addEventListener("click", e => {
+  const w = e.target.closest(".word"), bin = e.target.closest(".bin");
+  if(w){ document.querySelectorAll(".word").forEach(x => x.setAttribute("aria-pressed","false")); w.setAttribute("aria-pressed","true"); selW = w; e.stopPropagation(); return; }
+  if(bin && selW){ selW.setAttribute("aria-pressed","false"); selW.classList.remove("ok","no"); bin.querySelector(".chips").append(selW); selW = null; }
+});
+document.querySelectorAll(".bin").forEach(b => b.addEventListener("keydown", e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); b.click(); } }));
+document.getElementById("c3").onclick = () => {
+  let s = 0;
+  document.querySelectorAll(".bin").forEach(b => b.querySelectorAll(".word").forEach(w => { const ok = w.dataset.c === b.dataset.bin; w.classList.toggle("ok", ok); w.classList.toggle("no", !ok); if(ok) s++; }));
+  setScore(3, s);
+};
+document.getElementById("r3reset").onclick = () => { const pool = document.getElementById("pool"); document.querySelectorAll(".word").forEach(w => { w.classList.remove("ok","no"); pool.append(w); }); };
+
+/* ---------- Round 5: same word ---------- */
+const R5 = [
+ ["I’m so {} of shape. I can’t even run for the bus.", "It was so hot that a man passed {} at the concert.", ["out"]],
+ ["Our car broke down {} the middle of nowhere.", "I like my cousin, but only {} small doses.", ["in"]],
+ ["Can you pick me {} from the station at eight?", "Swimming is a great way to build {} your stamina.", ["up"]],
+ ["It took me a week to get {} my jet lag.", "Come {} for dinner on Friday!", ["over"]],
+ ["We {} absolutely soaked in the rain.", "My knee {} infected, so I went to the doctor.", ["got"]],
+ ["That flat cost me an arm and a {}.", "I hurt my {} playing football.", ["leg"]],
+];
+document.getElementById("panel4").innerHTML = head(4, "Round 5 · Same word",
+  "Write <b>one</b> word that fits both sentences. 1 point each.") +
+  R5.map(([a, b], i) => `<div class="item"><p style="margin:0"><span class="n">${i + 1}</span>a&nbsp; ${a.replace("{}", "_____")}</p>
+    <p style="margin:0;padding-left:1.9em">b&nbsp; ${b.replace("{}", "_____")}</p>
+    <div style="padding-left:1.9em">Word: <input class="gap short" id="r5_${i}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Word for pair ${i + 1}"> <span class="fix" hidden></span></div></div>`).join("") +
+  `<div class="btns"><button class="btn go" id="c4" type="button">Check round 5</button><button class="btn" id="s4" type="button">Show answers</button></div>`;
+document.getElementById("c4").onclick = () => { let s = 0;
+  R5.forEach((r, i) => { const g = document.getElementById("r5_" + i), ok = r[2].includes(norm(g.value)); g.className = "gap short " + (ok ? "ok" : "no"); if(ok) s++; });
+  setScore(4, s); };
+document.getElementById("s4").onclick = () => R5.forEach((r, i) => { const g = document.getElementById("r5_" + i);
+  if(!r[2].includes(norm(g.value))){ const f = g.parentElement.querySelector(".fix"); f.textContent = "→ " + r[2][0]; f.hidden = false; } });
+
+/* ---------- Final ---------- */
+function renderFinal(){
+  const t = scores.reduce((a, b) => a + b, 0), pct = t / 47;
+  const badge = pct >= .9 ? "Champion! 🏆" : pct >= .75 ? "Top division!" : pct >= .5 ? "Solid performance" : "Time for a time-out… and a rematch!";
+  document.getElementById("panel5").innerHTML = `<div class="final"><div class="ph" style="width:100%"><h2>Final score</h2></div>
+    <div class="badge">${badge}</div><div style="font-size:1.4rem;font-weight:800">${t} / 47</div>
+    <div class="scorelist">${ROUNDS.slice(0, 5).map((n, i) => `<span>${n}</span><b>${scores[i]} / ${maxes[i]}</b>`).join("")}</div></div>`;
+}
+renderFinal();
+openRound(0);
+</script>
+
+</html>
