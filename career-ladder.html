@@ -1,0 +1,214 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Career Ladder: Working Life</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap">
+<style>
+/* Layout: office building. Header with an elevator floor display + score. Left: floor buttons (rounds). Right: the current floor's task. Stacks on phones. */
+:root{
+  --bg:#eef0f4; --surface:#ffffff; --ink:#151b2b; --muted:#5b6478; --line:#d7dce5;
+  --navy:#1d2a4d; --navy-ink:#ffffff; --hl:#ffe14d; --hl-ink:#2a2300; --amber:#ff9f1c; --display-bg:#0d1117; --led:#ff7a1a;
+  --good:#1f8a55; --good-bg:#e1f4ea; --bad:#cc3a35; --bad-bg:#fbe6e5; --soft:#f2f4f8;
+  --head:"Archivo Black","Arial Black",Impact,sans-serif;
+  --body:"Outfit","Segoe UI",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320; --surface:#181e2e; --ink:#e9ecf4; --muted:#9ca5ba; --line:#2a3246;
+  --navy:#a9bbf0; --navy-ink:#0f1320; --hl:#ffe14d; --hl-ink:#2a2300; --display-bg:#05070b;
+  --good:#71d6a0; --good-bg:#15372a; --bad:#ff8580; --bad-bg:#3b1c1e; --soft:#20283a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320; --surface:#181e2e; --ink:#e9ecf4; --muted:#9ca5ba; --line:#2a3246;
+  --navy:#a9bbf0; --navy-ink:#0f1320; --hl:#ffe14d; --hl-ink:#2a2300; --display-bg:#05070b;
+  --good:#71d6a0; --good-bg:#15372a; --bad:#ff8580; --bad-bg:#3b1c1e; --soft:#20283a; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:22px 48px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:grid;gap:18px}
+header{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between}
+h1{font-family:var(--head);font-weight:400;font-size:clamp(1.7rem,5vw,2.8rem);line-height:1;margin:0}
+h1 span{background:var(--hl);color:var(--hl-ink);padding:0 .15em}
+.sub{margin:6px 0 0;color:var(--muted)}
+.hud{display:flex;gap:10px;align-items:stretch}
+.lift{background:var(--display-bg);border-radius:10px;padding:8px 14px;display:grid;place-items:center;min-width:92px;box-shadow:inset 0 0 0 3px #2b3240}
+.lift small{color:#8a94a8;font:600 .62rem var(--body);letter-spacing:.14em;text-transform:uppercase}
+.lift b{font-family:var(--mono);color:var(--led);font-size:2rem;line-height:1;text-shadow:0 0 8px rgba(255,122,26,.6)}
+.pts{background:var(--surface);border:2px solid var(--ink);border-radius:10px;padding:8px 14px;display:grid;place-items:center;min-width:110px}
+.pts small{color:var(--muted);font:600 .62rem var(--body);letter-spacing:.14em;text-transform:uppercase}
+.pts b{font-family:var(--head);font-weight:400;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.layout{grid-template-columns:1fr}}
+.floors{display:grid;gap:6px;position:sticky;top:calc(10px + env(safe-area-inset-top,0px))}
+@media (max-width:760px){.floors{position:static;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}}
+.fl{display:flex;align-items:center;gap:10px;text-align:left;font:600 .95rem var(--body);padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.fl i{font-style:normal;font-family:var(--mono);font-size:.85rem;width:26px;height:26px;border-radius:6px;display:grid;place-items:center;background:var(--soft);flex:none}
+.fl.done i{background:var(--good);color:var(--surface)}
+.fl[aria-selected="true"]{border-color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.panel{background:var(--surface);border:2px solid var(--ink);border-radius:14px;padding:20px clamp(16px,3vw,28px);display:grid;gap:14px;box-shadow:6px 6px 0 var(--ink)}
+.ph{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline}
+.ph h2{font-family:var(--head);font-weight:400;font-size:1.35rem;margin:0}
+.ph span{font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.how{margin:0;color:var(--muted)}
+.memo{margin:0;background:var(--hl);color:var(--hl-ink);border-radius:4px;padding:10px 14px;font-size:.95rem;transform:rotate(-.4deg);box-shadow:0 3px 8px -4px rgba(0,0,0,.35)}
+.item{display:grid;gap:8px;padding:11px 0;border-bottom:1px solid var(--line)}
+.item:last-of-type{border-bottom:0}
+.item p{margin:0}
+.n{font-family:var(--mono);color:var(--amber);margin-right:8px}
+.bank{display:flex;flex-wrap:wrap;gap:6px;padding:10px;border:2px dashed var(--line);border-radius:10px}
+.bank span{background:var(--soft);border-radius:999px;padding:3px 11px;font-weight:600}
+.bank span.used{opacity:.4;text-decoration:line-through}
+.gap{font:600 1rem var(--body);color:var(--ink);background:var(--soft);border:0;border-bottom:2px solid var(--navy);border-radius:4px 4px 0 0;padding:2px 6px;width:9.5em;max-width:100%}
+.gap.ok{background:var(--good-bg);border-bottom-color:var(--good)} .gap.no{background:var(--bad-bg);border-bottom-color:var(--bad)}
+select{font:500 1rem var(--body);color:var(--ink);background:var(--soft);border:2px solid var(--line);border-radius:8px;padding:6px 8px;max-width:100%}
+select.ok{border-color:var(--good);background:var(--good-bg)} select.no{border-color:var(--bad);background:var(--bad-bg)}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opt{font:600 .95rem var(--body);padding:7px 13px;border-radius:999px;border:2px solid var(--line);background:var(--soft);color:var(--ink);cursor:pointer}
+.opt[aria-pressed="true"]{border-color:var(--navy);background:var(--surface);color:var(--navy)}
+.opt.right{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.fix{font-size:.9rem;color:var(--bad);font-weight:600}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{font:700 1rem var(--body);padding:10px 18px;border-radius:10px;border:2px solid var(--ink);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn.go{background:var(--ink);color:var(--bg)}
+.final{display:grid;gap:12px;justify-items:center;text-align:center;padding:10px 0}
+.badge{font-family:var(--head);font-weight:400;font-size:clamp(1.8rem,6vw,3rem);line-height:1.05}
+.badge span{background:var(--hl);color:var(--hl-ink);padding:0 .15em}
+.ladder{display:grid;gap:4px;width:min(100%,360px)}
+.ladder div{display:flex;justify-content:space-between;padding:6px 12px;border-radius:8px;background:var(--soft);font-weight:600;font-variant-numeric:tabular-nums}
+.ladder div.me{background:var(--ink);color:var(--bg)}
+</style>
+
+<div class="wrap">
+  <header>
+    <div><h1>Career <span>Ladder</span></h1><p class="sub">Unit 5 · Working life revision. Climb all 7 floors to find out your new job title!</p></div>
+    <div class="hud">
+      <div class="lift"><small>Floor</small><b id="floor">0</b></div>
+      <div class="pts"><small>Points</small><b id="total">0 / 44</b></div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav class="floors" id="floors" role="tablist" aria-label="Floors"></nav>
+    <div id="panels"></div>
+  </div>
+</div>
+
+<script>
+const norm = s => s.trim().toLowerCase().replace(/[’']/g, "'").replace(/[.,!?]/g, "").replace(/\s+/g, " ");
+const ROUNDS = [
+ { t:"Describing jobs", type:"gap", max:8, how:"Complete the sentences with the words in the box.",
+   bank:["insecure","varied","well-paid","paperwork","rewarding","self-employed","competitive","temporary"],
+   items:[["Hundreds of people apply for every job here. It’s very {}.","competitive"],["She earns £90,000 a year plus a bonus. It’s really {}.","well-paid"],
+          ["Nurses help people every day. It’s a very {} job.","rewarding"],["I’m on a {} contract, so I’ll probably lose my job in March.","temporary"],
+          ["I don’t work for a company. I’m {}.","self-employed"],["You never know if you’ll have work next month. It’s very {}.","insecure"],
+          ["I just sit at a desk and do {} all day. So boring!","paperwork"],["Every day is different. The job is really {}.","varied"]] },
+ { t:"Doing what?", type:"select", max:5, how:"Which department does each person work in?", memo:"A: So what do you do? &nbsp;B: I work for a bank. &nbsp;A: Oh yeah. <b>Doing what?</b>",
+   choices:["accounts","human resources","marketing","sales","the warehouse"],
+   items:[["“I’m involved in planning the advertising campaigns.”","marketing"],["“I deal with all the pay and finances.”","accounts"],
+          ["“I do all the orders and get them ready for delivery.”","the warehouse"],["“I’m responsible for recruitment and working conditions.”","human resources"],
+          ["“I’m the rep for the whole of the north of the country.”","sales"]] },
+ { t:"Must / can’t", type:"choice", max:6, how:"Choose the best comment.", memo:"<b>must</b> = I’m sure it’s true. <b>can’t</b> = I’m sure it’s not true.",
+   items:[["“I’m the sales manager for the whole of Europe.”",["That must be stressful.","That can’t be stressful."],0],
+          ["“I get eight weeks’ holiday a year.”",["That can’t be nice.","That must be nice."],1],
+          ["“I work nights in a call centre.”",["That must be easy.","That can’t be easy."],1],
+          ["“My boss never says thank you.”",["That can’t be very motivating.","That must be very motivating."],0],
+          ["“I travel all over Asia for work.”",["That must be exciting.","That can’t be exciting."],0],
+          ["“They only pay me the minimum wage.”",["That must be enough to live on.","That can’t be enough to live on."],1]] },
+ { t:"How long?", type:"choice", max:7, how:"Choose the correct option.", memo:"Still true now → <b>present perfect (continuous)</b>. Finished → <b>past simple</b>.",
+   items:[["A: How long ___ here? B: Since March. I love it!",["did you work","have you been working"],1],
+          ["I ___ there for five years before I moved to London.",["worked","have been working"],0],
+          ["She’s been a nurse ___ 2019.",["for","since"],1],
+          ["How long ___ each other?",["have you been knowing","have you known"],1],
+          ["I waited ___ two hours, and then I went home.",["for","during"],0],
+          ["I’ve had this phone ___ ages.",["since","for"],1],
+          ["We’ve lived here ever ___ we got married.",["since","for"],0]] },
+ { t:"Rules at work", type:"choice", max:6, how:"Choose the correct option.",
+   items:[["You ___ wear a tie, but you can if you want.",["don’t have to","mustn’t"],0],
+          ["Sorry, you ___ smoke in here.",["don’t have to","aren’t allowed to"],1],
+          ["We’re ___ start at 9, but everyone arrives at 9.15.",["supposed to","allowed to"],0],
+          ["___ use my phone during the meeting?",["Am I allowed to","Do I supposed to"],0],
+          ["You ___ wear a hard hat on the building site. It’s the law.",["have to","are allowed to"],0],
+          ["Staff ___ park in the visitors’ car park. It’s only for guests.",["don’t have to","can’t"],1]] },
+ { t:"Rules and laws", type:"gap", max:6, how:"Complete the sentences with the words in the box.",
+   bank:["court","introduced","fined","requirement","banned","discrimination"],
+   items:[["The company was {} £50,000 for ignoring safety rules.","fined"],["Smoking is {} in all offices.","banned"],
+          ["{} against older workers is illegal.","discrimination"],["She took her boss to {} and won.","court"],
+          ["Wearing a hard hat is a legal {} on building sites.","requirement"],["The government has {} a new law to reduce working hours.","introduced"]] },
+ { t:"Used to & chunks", type:"choice", max:6, how:"Choose the correct option.",
+   items:[["I’m used to ___ up early. It’s no problem.",["get","getting"],1],
+          ["It took me a month to ___ the noise in the office.",["get used to","be used to"],0],
+          ["I ___ live in Moscow, but now I live in Berlin.",["used to","am used to"],0],
+          ["He works for the ___ wage, so he can’t afford a car.",["minimal","minimum"],1],
+          ["I’m taking a course in preparation ___ my exams.",["for","to"],0],
+          ["Working nights is not as bad as you might ___.",["think","thinking"],0]] },
+];
+const RANKS = [[0,"Intern"],[14,"Assistant"],[22,"Team Leader"],[30,"Manager"],[37,"Director"],[42,"CEO"]];
+const scores = ROUNDS.map(() => null);
+const floors = document.getElementById("floors"), panels = document.getElementById("panels");
+
+ROUNDS.forEach((r, i) => {
+  const b = document.createElement("button"); b.className = "fl"; b.type = "button"; b.setAttribute("role", "tab"); b.dataset.i = i;
+  b.innerHTML = `<i>${i + 1}</i>${r.t}`; b.onclick = () => open(i); floors.append(b);
+  const p = document.createElement("section"); p.className = "panel"; p.hidden = true; p.setAttribute("role", "tabpanel"); p.dataset.i = i;
+  let body = "";
+  if(r.type === "gap"){
+    body = `<div class="bank">${r.bank.map(w => `<span data-w="${w}">${w}</span>`).join("")}</div>` +
+      r.items.map(([s], k) => `<div class="item"><p><span class="n">${k + 1}</span>${s.replace("{}", `<input class="gap" id="g${i}_${k}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Gap ${k + 1}">`)}</p><span class="fix" hidden></span></div>`).join("");
+  } else if(r.type === "select"){
+    const o = `<option value="">— choose —</option>` + r.choices.map(c => `<option>${c}</option>`).join("");
+    body = r.items.map(([s], k) => `<div class="item"><p><span class="n">${k + 1}</span>${s}</p><select id="g${i}_${k}" aria-label="Department ${k + 1}">${o}</select></div>`).join("");
+  } else {
+    body = r.items.map(([s, o], k) => `<div class="item" data-k="${k}"><p><span class="n">${k + 1}</span>${s.replace("___", "_____")}</p>
+      <div class="opts">${o.map((t, j) => `<button class="opt" type="button" data-j="${j}" aria-pressed="false">${t}</button>`).join("")}</div></div>`).join("");
+  }
+  p.innerHTML = `<div class="ph"><h2>Floor ${i + 1} · ${r.t}</h2><span id="s${i}">— / ${r.max}</span></div><p class="how">${r.how}</p>${r.memo ? `<p class="memo">${r.memo}</p>` : ""}${body}
+    <div class="btns"><button class="btn go" type="button" data-act="check">Check &amp; go up ↑</button>${r.type !== "choice" ? `<button class="btn" type="button" data-act="show">Show answers</button>` : ""}</div>`;
+  p.addEventListener("click", e => {
+    const op = e.target.closest(".opt");
+    if(op && !op.disabled){ op.parentElement.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed", x === op)); return; }
+    const a = e.target.closest("[data-act]"); if(!a) return;
+    if(a.dataset.act === "check") check(i); else show(i);
+  });
+  panels.append(p);
+});
+const fin = document.createElement("section"); fin.className = "panel"; fin.hidden = true; fin.id = "fin"; panels.append(fin);
+const rb = document.createElement("button"); rb.className = "fl"; rb.type = "button"; rb.innerHTML = `<i>★</i>Your new job`; rb.onclick = () => open(-1); floors.append(rb);
+
+function check(i){
+  const r = ROUNDS[i], p = panels.children[i]; let s = 0;
+  r.items.forEach((it, k) => {
+    if(r.type === "choice"){
+      const item = p.querySelector(`.item[data-k="${k}"]`), sel = item.querySelector('[aria-pressed="true"]');
+      item.querySelectorAll(".opt").forEach(o => { o.disabled = true; o.classList.toggle("right", +o.dataset.j === it[2]); if(sel === o && +o.dataset.j !== it[2]) o.classList.add("wrong"); });
+      if(sel && +sel.dataset.j === it[2]) s++;
+    } else {
+      const el = document.getElementById(`g${i}_${k}`), ok = norm(el.value) === norm(it[1]);
+      el.classList.toggle("ok", ok); el.classList.toggle("no", !ok); if(ok) s++;
+      if(r.type === "gap"){ const sp = p.querySelector(`.bank [data-w="${it[1]}"]`); if(sp) sp.classList.toggle("used", ok); }
+    }
+  });
+  scores[i] = s; document.getElementById("s" + i).textContent = `${s} / ${r.max}`;
+  floors.children[i].classList.add("done"); update();
+}
+function show(i){
+  const r = ROUNDS[i], p = panels.children[i];
+  r.items.forEach((it, k) => { const el = document.getElementById(`g${i}_${k}`); if(norm(el.value) === norm(it[1])) return;
+    if(r.type === "select"){ el.value = it[1]; el.className = "no"; }
+    else { const f = el.closest(".item").querySelector(".fix"); f.textContent = "→ " + it[1]; f.hidden = false; } });
+}
+function update(){
+  const done = scores.filter(x => x !== null).length, total = scores.reduce((a, b) => a + (b || 0), 0);
+  document.getElementById("floor").textContent = done; document.getElementById("total").textContent = `${total} / 44`;
+  let rank = RANKS[0][1]; RANKS.forEach(([min, n]) => { if(total >= min) rank = n; });
+  fin.innerHTML = `<div class="final"><p class="how">${done < 7 ? `You’ve completed ${done} of 7 floors. Finish them all for your final job title!` : "Performance review complete."}</p>
+    <div class="badge">You are now… <span>${rank}</span></div>
+    <div class="ladder">${RANKS.slice().reverse().map(([min, n]) => `<div class="${n === rank ? "me" : ""}"><span>${n}</span><span>${min}+</span></div>`).join("")}</div>
+    <p style="margin:0;font-weight:700">${total} / 44 points</p></div>`;
+}
+function open(i){
+  [...floors.children].forEach((b, k) => b.setAttribute("aria-selected", k === (i < 0 ? 7 : i)));
+  [...panels.children].forEach((p, k) => p.hidden = k !== (i < 0 ? 7 : i));
+}
+update(); open(0);
+</script>
+
+</html>
